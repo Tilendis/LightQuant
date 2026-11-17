@@ -1,0 +1,28 @@
+{
+  "prompt_version": "fusion-orch-agent-v1",
+  "spec": "agent",
+  "view_spec": {
+    "tech": "tech-agent-v1",
+    "fund": "fund-agent-v1",
+    "sent": "sent-v1"
+  },
+  "sent_max_lag_days": 5,
+  "window": [
+    "2024-12-16",
+    "2024-12-31"
+  ],
+  "symbols": 50,
+  "dates": 12,
+  "dry_run": true,
+  "branch_counts": {
+    "minor_dry": 249,
+    "unanimous_dry": 314,
+    "conflict_dry": 37
+  },
+  "llm_stats": {
+    "in_tokens": 0,
+    "out_tokens": 0,
+    "llm_calls": 0
+  },
+  "note": "本层只用于解释与展示，不进入回测信号链；回测仍读 fusion-val-v1"
+}

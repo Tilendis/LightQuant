@@ -1,0 +1,24 @@
+# 实验 A2：第 5 维换成成交量（替换，不追加），同口径基线为 base_alstm
+# 用法：python run.py --config configs/exp_vol_alstm.yaml
+dataset: CSMD50
+model: alstm
+use_news: false
+useGPU: false
+use_swanlab: false
+epochs: 300
+look_back_window: 5
+batch_size: 64
+layers: 2
+hidden_size: 128
+attention_size: 128
+dropout: 0.1
+lr: 0.0003
+weight_decay: 0.0001
+input_size: 5
+feature_columns: "Open,High,Low,Close,Volume"
+label_smoothing: false
+label_smoothing_epsilon: 0.1
+seed: 37
+model_save_folder: "./result/CSMD50_w5_vol/model_saved/"
+figure_save_folder: "./result/CSMD50_w5_vol/figure/"
+test_result_save_folder: "./result/CSMD50_w5_vol/test_result/"

@@ -1,0 +1,20 @@
+{
+  "prompt_version": "fusion-orch-v1",
+  "window": [
+    "2024-12-31",
+    "2024-12-31"
+  ],
+  "symbols": 50,
+  "dates": 1,
+  "branch_counts": {
+    "minor": 24,
+    "unanimous": 4,
+    "conflict_llm": 22
+  },
+  "llm_stats": {
+    "in_tokens": 7779,
+    "out_tokens": 1009,
+    "llm_calls": 22
+  },
+  "note": "本层只用于解释与展示，不进入回测信号链；回测仍读 fusion-val-v1"
+}

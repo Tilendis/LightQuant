@@ -1,0 +1,1859 @@
+{
+  "root": "D:\\03_Study\\GraduationProject\\LightQuant\\dataset\\CSMD50_feat",
+  "board_split": {
+    "main_board_10pct": 138,
+    "star_chi_next_20pct": 12
+  },
+  "files": 150,
+  "total_extreme_rows": 38,
+  "verdict": "large_jump_detected",
+  "can_prove": "窗口内没有送股/转增/配股等引发大幅跳空的除权事件",
+  "cannot_prove": "现金分红除息（幅度 1-3%，在正常波动噪声内，价格上无法区分）",
+  "note": "按板块分流阈值：主板 0.11，科创板/创业板 0.21，北交所 0.31。任何超过该阈值的单日涨跌都意味着价格发生了超出交易规则的跳变，在无停牌复牌的情况下即对应除权事件。",
+  "samples": [
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "train",
+      "date": "2021-07-12",
+      "limit_threshold": 0.11,
+      "return": -0.118118,
+      "close_ratio": null
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "train",
+      "date": "2022-07-11",
+      "limit_threshold": 0.11,
+      "return": -0.133034,
+      "close_ratio": null
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "train",
+      "date": "2021-07-12",
+      "limit_threshold": 0.11,
+      "return": -0.118118,
+      "close_ratio": 0.881882
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "train",
+      "date": "2022-07-11",
+      "limit_threshold": 0.11,
+      "return": -0.133034,
+      "close_ratio": 0.866966
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2021-07-14",
+      "limit_threshold": 0.11,
+      "return": -0.25,
+      "close_ratio": null
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2022-12-14",
+      "limit_threshold": 0.11,
+      "return": -0.15266,
+      "close_ratio": null
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2023-06-28",
+      "limit_threshold": 0.11,
+      "return": -0.136155,
+      "close_ratio": null
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2021-07-14",
+      "limit_threshold": 0.11,
+      "return": -0.25,
+      "close_ratio": 0.75
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2022-12-14",
+      "limit_threshold": 0.11,
+      "return": -0.15266,
+      "close_ratio": 0.84734
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "date": "2023-06-28",
+      "limit_threshold": 0.11,
+      "return": -0.136155,
+      "close_ratio": 0.863845
+    },
+    {
+      "symbol": "兆易创新",
+      "code": "603986",
+      "split": "train",
+      "date": "2021-05-21",
+      "limit_threshold": 0.11,
+      "return": -0.299839,
+      "close_ratio": null
+    },
+    {
+      "symbol": "兆易创新",
+      "code": "603986",
+      "split": "train",
+      "date": "2021-05-21",
+      "limit_threshold": 0.11,
+      "return": -0.299839,
+      "close_ratio": 0.700161
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2021-06-23",
+      "limit_threshold": 0.11,
+      "return": -0.168268,
+      "close_ratio": null
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2022-06-22",
+      "limit_threshold": 0.11,
+      "return": -0.19033,
+      "close_ratio": null
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2023-06-21",
+      "limit_threshold": 0.11,
+      "return": -0.185198,
+      "close_ratio": null
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2021-06-23",
+      "limit_threshold": 0.11,
+      "return": -0.168268,
+      "close_ratio": 0.831732
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2022-06-22",
+      "limit_threshold": 0.11,
+      "return": -0.19033,
+      "close_ratio": 0.80967
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "date": "2023-06-21",
+      "limit_threshold": 0.11,
+      "return": -0.185198,
+      "close_ratio": 0.814802
+    },
+    {
+      "symbol": "山西汾酒",
+      "code": "600809",
+      "split": "train",
+      "date": "2021-07-05",
+      "limit_threshold": 0.11,
+      "return": -0.242279,
+      "close_ratio": null
+    },
+    {
+      "symbol": "山西汾酒",
+      "code": "600809",
+      "split": "train",
+      "date": "2021-07-05",
+      "limit_threshold": 0.11,
+      "return": -0.242279,
+      "close_ratio": 0.757721
+    },
+    {
+      "symbol": "恒瑞医药",
+      "code": "600276",
+      "split": "train",
+      "date": "2021-06-10",
+      "limit_threshold": 0.11,
+      "return": -0.132501,
+      "close_ratio": null
+    },
+    {
+      "symbol": "恒瑞医药",
+      "code": "600276",
+      "split": "train",
+      "date": "2021-06-10",
+      "limit_threshold": 0.11,
+      "return": -0.132501,
+      "close_ratio": 0.867499
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "train",
+      "date": "2021-05-17",
+      "limit_threshold": 0.11,
+      "return": -0.213862,
+      "close_ratio": null
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "train",
+      "date": "2023-06-01",
+      "limit_threshold": 0.11,
+      "return": -0.17157,
+      "close_ratio": null
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "train",
+      "date": "2021-05-17",
+      "limit_threshold": 0.11,
+      "return": -0.213862,
+      "close_ratio": 0.786138
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "train",
+      "date": "2023-06-01",
+      "limit_threshold": 0.11,
+      "return": -0.17157,
+      "close_ratio": 0.82843
+    },
+    {
+      "symbol": "特变电工",
+      "code": "600089",
+      "split": "train",
+      "date": "2023-07-18",
+      "limit_threshold": 0.11,
+      "return": -0.270568,
+      "close_ratio": null
+    },
+    {
+      "symbol": "特变电工",
+      "code": "600089",
+      "split": "train",
+      "date": "2023-07-18",
+      "limit_threshold": 0.11,
+      "return": -0.270568,
+      "close_ratio": 0.729432
+    },
+    {
+      "symbol": "药明康德",
+      "code": "603259",
+      "split": "train",
+      "date": "2021-06-08",
+      "limit_threshold": 0.11,
+      "return": -0.175387,
+      "close_ratio": null
+    },
+    {
+      "symbol": "药明康德",
+      "code": "603259",
+      "split": "train",
+      "date": "2021-06-08",
+      "limit_threshold": 0.11,
+      "return": -0.175387,
+      "close_ratio": 0.824613
+    },
+    {
+      "symbol": "陕西煤业",
+      "code": "601225",
+      "split": "train",
+      "date": "2023-07-12",
+      "limit_threshold": 0.11,
+      "return": -0.117122,
+      "close_ratio": null
+    },
+    {
+      "symbol": "陕西煤业",
+      "code": "601225",
+      "split": "train",
+      "date": "2023-07-12",
+      "limit_threshold": 0.11,
+      "return": -0.117122,
+      "close_ratio": 0.882878
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "train",
+      "date": "2021-06-23",
+      "limit_threshold": 0.11,
+      "return": -0.272744,
+      "close_ratio": null
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "train",
+      "date": "2022-06-06",
+      "limit_threshold": 0.11,
+      "return": -0.242061,
+      "close_ratio": null
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "train",
+      "date": "2021-06-23",
+      "limit_threshold": 0.11,
+      "return": -0.272744,
+      "close_ratio": 0.727256
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "train",
+      "date": "2022-06-06",
+      "limit_threshold": 0.11,
+      "return": -0.242061,
+      "close_ratio": 0.757939
+    },
+    {
+      "symbol": "韦尔股份",
+      "code": "603501",
+      "split": "train",
+      "date": "2022-07-28",
+      "limit_threshold": 0.11,
+      "return": -0.242041,
+      "close_ratio": null
+    },
+    {
+      "symbol": "韦尔股份",
+      "code": "603501",
+      "split": "train",
+      "date": "2022-07-28",
+      "limit_threshold": 0.11,
+      "return": -0.242041,
+      "close_ratio": 0.757959
+    }
+  ],
+  "per_file": [
+    {
+      "symbol": "万华化学",
+      "code": "600309",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.094613,
+      "ret_max": 0.069196,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "三一重工",
+      "code": "600031",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.076725,
+      "ret_max": 0.059484,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "上汽集团",
+      "code": "600104",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.099728,
+      "ret_max": 0.099934,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中信证券",
+      "code": "600030",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.085667,
+      "ret_max": 0.100089,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中免",
+      "code": "601888",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100012,
+      "ret_max": 0.100028,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中铁",
+      "code": "601390",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.090379,
+      "ret_max": 0.099359,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国人寿",
+      "code": "601628",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.1,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国太保",
+      "code": "601601",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100098,
+      "ret_max": 0.093095,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国平安",
+      "code": "601318",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.097683,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国建筑",
+      "code": "601668",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.092332,
+      "ret_max": 0.086207,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国核电",
+      "code": "601985",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.061706,
+      "ret_max": 0.059487,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电信",
+      "code": "601728",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.051205,
+      "ret_max": 0.060032,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电建",
+      "code": "601669",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.096828,
+      "ret_max": 0.088803,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石化",
+      "code": "600028",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.062678,
+      "ret_max": 0.045593,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石油",
+      "code": "601857",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.095289,
+      "ret_max": 0.076372,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049246,
+      "ret_max": 0.064436,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国移动",
+      "code": "600941",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.031959,
+      "ret_max": 0.051875,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国联通",
+      "code": "600050",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.066787,
+      "ret_max": 0.076459,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国船舶",
+      "code": "600150",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.090435,
+      "ret_max": 0.088044,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国银行",
+      "code": "601988",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.041016,
+      "ret_max": 0.044776,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中微公司",
+      "code": "688012",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.21,
+      "ret_min": -0.097021,
+      "ret_max": 0.2,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中芯国际",
+      "code": "688981",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.21,
+      "ret_min": -0.105734,
+      "ret_max": 0.20004,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.097532,
+      "ret_max": 0.058985,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "交通银行",
+      "code": "601328",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.059524,
+      "ret_max": 0.067365,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "伊利股份",
+      "code": "600887",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.083909,
+      "ret_max": 0.084573,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "保利发展",
+      "code": "600048",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100091,
+      "ret_max": 0.100121,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "兆易创新",
+      "code": "603986",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.066137,
+      "ret_max": 0.100034,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "兴业银行",
+      "code": "601166",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.069965,
+      "ret_max": 0.050709,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "农业银行",
+      "code": "601288",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.046559,
+      "ret_max": 0.041408,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.035303,
+      "ret_max": 0.059342,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "山西汾酒",
+      "code": "600809",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.1,
+      "ret_max": 0.10003,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "工商银行",
+      "code": "601398",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.041602,
+      "ret_max": 0.048951,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "恒瑞医药",
+      "code": "600276",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.077308,
+      "ret_max": 0.074363,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "招商银行",
+      "code": "600036",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.07475,
+      "ret_max": 0.063547,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海光信息",
+      "code": "688041",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.21,
+      "ret_min": -0.069328,
+      "ret_max": 0.200039,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.099421,
+      "ret_max": 0.099772,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海尔智家",
+      "code": "600690",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.059783,
+      "ret_max": 0.068106,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "片仔癀",
+      "code": "600436",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.096408,
+      "ret_max": 0.100004,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "特变电工",
+      "code": "600089",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.091455,
+      "ret_max": 0.069394,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "紫金矿业",
+      "code": "601899",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.05735,
+      "ret_max": 0.043616,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "药明康德",
+      "code": "603259",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.063353,
+      "ret_max": 0.100076,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "贵州茅台",
+      "code": "600519",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.074202,
+      "ret_max": 0.092924,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "通威股份",
+      "code": "600438",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100082,
+      "ret_max": 0.100199,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "邮储银行",
+      "code": "601658",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049724,
+      "ret_max": 0.056202,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "金山办公",
+      "code": "688111",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.21,
+      "ret_min": -0.170612,
+      "ret_max": 0.2,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长城汽车",
+      "code": "601633",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.082735,
+      "ret_max": 0.100181,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长江电力",
+      "code": "600900",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.046312,
+      "ret_max": 0.036564,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "陕西煤业",
+      "code": "601225",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.056575,
+      "ret_max": 0.058455,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100104,
+      "ret_max": 0.100251,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "韦尔股份",
+      "code": "603501",
+      "split": "test",
+      "rows": 97,
+      "limit_threshold": 0.11,
+      "ret_min": -0.051468,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "万华化学",
+      "code": "600309",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.091617,
+      "ret_max": 0.100048,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "三一重工",
+      "code": "600031",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.090261,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "上汽集团",
+      "code": "600104",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.060884,
+      "ret_max": 0.100194,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中信证券",
+      "code": "600030",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.060311,
+      "ret_max": 0.099907,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中免",
+      "code": "601888",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100015,
+      "ret_max": 0.100025,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中铁",
+      "code": "601390",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.091877,
+      "ret_max": 0.100346,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国人寿",
+      "code": "601628",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.065831,
+      "ret_max": 0.099886,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国太保",
+      "code": "601601",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.08107,
+      "ret_max": 0.099847,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国平安",
+      "code": "601318",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.068981,
+      "ret_max": 0.100022,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国建筑",
+      "code": "601668",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.07767,
+      "ret_max": 0.083485,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国核电",
+      "code": "601985",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.07113,
+      "ret_max": 0.10017,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电信",
+      "code": "601728",
+      "split": "train",
+      "rows": 620,
+      "limit_threshold": 0.11,
+      "ret_min": -0.1,
+      "ret_max": 0.100917,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电建",
+      "code": "601669",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100423,
+      "ret_max": 0.10068,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石化",
+      "code": "600028",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.064159,
+      "ret_max": 0.078755,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石油",
+      "code": "601857",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.084249,
+      "ret_max": 0.100551,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.133034,
+      "ret_max": 0.099954,
+      "extreme_rows": 4
+    },
+    {
+      "symbol": "中国移动",
+      "code": "600941",
+      "split": "train",
+      "rows": 530,
+      "limit_threshold": 0.11,
+      "ret_min": -0.090406,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国联通",
+      "code": "600050",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.095935,
+      "ret_max": 0.101075,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国船舶",
+      "code": "600150",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.096811,
+      "ret_max": 0.100199,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国银行",
+      "code": "601988",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.071207,
+      "ret_max": 0.10049,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中微公司",
+      "code": "688012",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.21,
+      "ret_min": -0.19403,
+      "ret_max": 0.164684,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中芯国际",
+      "code": "688981",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.21,
+      "ret_min": -0.111896,
+      "ret_max": 0.125874,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.25,
+      "ret_max": 0.10022,
+      "extreme_rows": 6
+    },
+    {
+      "symbol": "交通银行",
+      "code": "601328",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.072614,
+      "ret_max": 0.062837,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "伊利股份",
+      "code": "600887",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100139,
+      "ret_max": 0.07538,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "保利发展",
+      "code": "600048",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.099804,
+      "ret_max": 0.100069,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "兆易创新",
+      "code": "603986",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.299839,
+      "ret_max": 0.100047,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "兴业银行",
+      "code": "601166",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.085133,
+      "ret_max": 0.099729,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "农业银行",
+      "code": "601288",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.064407,
+      "ret_max": 0.074586,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.19033,
+      "ret_max": 0.1,
+      "extreme_rows": 6
+    },
+    {
+      "symbol": "山西汾酒",
+      "code": "600809",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.242279,
+      "ret_max": 0.1,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "工商银行",
+      "code": "601398",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.061602,
+      "ret_max": 0.062124,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "恒瑞医药",
+      "code": "600276",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.132501,
+      "ret_max": 0.099884,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "招商银行",
+      "code": "600036",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.086353,
+      "ret_max": 0.090738,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海光信息",
+      "code": "688041",
+      "split": "train",
+      "rows": 384,
+      "limit_threshold": 0.21,
+      "ret_min": -0.199932,
+      "ret_max": 0.14792,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.213862,
+      "ret_max": 0.100022,
+      "extreme_rows": 4
+    },
+    {
+      "symbol": "海尔智家",
+      "code": "600690",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.094479,
+      "ret_max": 0.077441,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "片仔癀",
+      "code": "600436",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100016,
+      "ret_max": 0.1,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "特变电工",
+      "code": "600089",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.270568,
+      "ret_max": 0.100362,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "紫金矿业",
+      "code": "601899",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.086124,
+      "ret_max": 0.100166,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "药明康德",
+      "code": "603259",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.175387,
+      "ret_max": 0.1,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "贵州茅台",
+      "code": "600519",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.075567,
+      "ret_max": 0.095041,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "通威股份",
+      "code": "600438",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.1,
+      "ret_max": 0.100109,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "邮储银行",
+      "code": "601658",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.067766,
+      "ret_max": 0.083665,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "金山办公",
+      "code": "688111",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.21,
+      "ret_min": -0.177326,
+      "ret_max": 0.186867,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长城汽车",
+      "code": "601633",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.1,
+      "ret_max": 0.100217,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长江电力",
+      "code": "600900",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.06,
+      "ret_max": 0.0681,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "陕西煤业",
+      "code": "601225",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.117122,
+      "ret_max": 0.100321,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.272744,
+      "ret_max": 0.100097,
+      "extreme_rows": 4
+    },
+    {
+      "symbol": "韦尔股份",
+      "code": "603501",
+      "split": "train",
+      "rows": 774,
+      "limit_threshold": 0.11,
+      "ret_min": -0.242041,
+      "ret_max": 0.10003,
+      "extreme_rows": 2
+    },
+    {
+      "symbol": "万华化学",
+      "code": "600309",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.04317,
+      "ret_max": 0.035854,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "三一重工",
+      "code": "600031",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.047474,
+      "ret_max": 0.052253,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "上汽集团",
+      "code": "600104",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.027487,
+      "ret_max": 0.023704,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中信证券",
+      "code": "600030",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049034,
+      "ret_max": 0.053905,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中免",
+      "code": "601888",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.053134,
+      "ret_max": 0.099822,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国中铁",
+      "code": "601390",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.040876,
+      "ret_max": 0.079412,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国人寿",
+      "code": "601628",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.060644,
+      "ret_max": 0.04264,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国太保",
+      "code": "601601",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.057349,
+      "ret_max": 0.068747,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国平安",
+      "code": "601318",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.034975,
+      "ret_max": 0.049942,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国建筑",
+      "code": "601668",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.038462,
+      "ret_max": 0.043912,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国核电",
+      "code": "601985",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049957,
+      "ret_max": 0.071829,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电信",
+      "code": "601728",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.042925,
+      "ret_max": 0.030945,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国电建",
+      "code": "601669",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.027125,
+      "ret_max": 0.061303,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石化",
+      "code": "600028",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.042813,
+      "ret_max": 0.04232,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国石油",
+      "code": "601857",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049661,
+      "ret_max": 0.068108,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国神华",
+      "code": "601088",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.03894,
+      "ret_max": 0.033224,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国移动",
+      "code": "600941",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.044873,
+      "ret_max": 0.037506,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国联通",
+      "code": "600050",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.021882,
+      "ret_max": 0.04646,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国船舶",
+      "code": "600150",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.055031,
+      "ret_max": 0.078411,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中国银行",
+      "code": "601988",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.045082,
+      "ret_max": 0.023758,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中微公司",
+      "code": "688012",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.21,
+      "ret_min": -0.042099,
+      "ret_max": 0.078791,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中芯国际",
+      "code": "688981",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.21,
+      "ret_min": -0.061307,
+      "ret_max": 0.057056,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "中远海控",
+      "code": "601919",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.100116,
+      "ret_max": 0.091728,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "交通银行",
+      "code": "601328",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.046512,
+      "ret_max": 0.030259,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "伊利股份",
+      "code": "600887",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.045423,
+      "ret_max": 0.028279,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "保利发展",
+      "code": "600048",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.042403,
+      "ret_max": 0.100196,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "兆易创新",
+      "code": "603986",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.074801,
+      "ret_max": 0.100044,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "兴业银行",
+      "code": "601166",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.04919,
+      "ret_max": 0.024272,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "农业银行",
+      "code": "601288",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.038375,
+      "ret_max": 0.026087,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "国电南瑞",
+      "code": "600406",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.042891,
+      "ret_max": 0.051988,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "山西汾酒",
+      "code": "600809",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.059442,
+      "ret_max": 0.048688,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "工商银行",
+      "code": "601398",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.05,
+      "ret_max": 0.02911,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "恒瑞医药",
+      "code": "600276",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.045956,
+      "ret_max": 0.05525,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "招商银行",
+      "code": "600036",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.051326,
+      "ret_max": 0.034237,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海光信息",
+      "code": "688041",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.21,
+      "ret_min": -0.053354,
+      "ret_max": 0.081111,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海天味业",
+      "code": "603288",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.035854,
+      "ret_max": 0.045833,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "海尔智家",
+      "code": "600690",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.04003,
+      "ret_max": 0.083037,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "片仔癀",
+      "code": "600436",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.075893,
+      "ret_max": 0.044176,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "特变电工",
+      "code": "600089",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.0479,
+      "ret_max": 0.03125,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "紫金矿业",
+      "code": "601899",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.066546,
+      "ret_max": 0.057613,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "药明康德",
+      "code": "603259",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.04868,
+      "ret_max": 0.068771,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "贵州茅台",
+      "code": "600519",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.030991,
+      "ret_max": 0.034935,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "通威股份",
+      "code": "600438",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.053733,
+      "ret_max": 0.090909,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "邮储银行",
+      "code": "601658",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.05848,
+      "ret_max": 0.028807,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "金山办公",
+      "code": "688111",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.21,
+      "ret_min": -0.098901,
+      "ret_max": 0.091184,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长城汽车",
+      "code": "601633",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.059289,
+      "ret_max": 0.083301,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "长江电力",
+      "code": "600900",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.027875,
+      "ret_max": 0.037643,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "陕西煤业",
+      "code": "601225",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.049945,
+      "ret_max": 0.04877,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "隆基绿能",
+      "code": "601012",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.060175,
+      "ret_max": 0.068852,
+      "extreme_rows": 0
+    },
+    {
+      "symbol": "韦尔股份",
+      "code": "603501",
+      "split": "val",
+      "rows": 98,
+      "limit_threshold": 0.11,
+      "ret_min": -0.046203,
+      "ret_max": 0.066631,
+      "extreme_rows": 0
+    }
+  ]
+}

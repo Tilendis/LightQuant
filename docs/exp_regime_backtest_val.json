@@ -1,0 +1,77 @@
+{
+  "purpose": "为'策略在非上涨行情中的表现'提供第二段样本，回答'绝对收益跑输基准是否只是 beta 问题'",
+  "provenance": {
+    "signal": "BiLSTM+十维 线上权重 result/CSMD50_w5_feat_bi/model_saved/bi_lstm.pth",
+    "signal_gen_cmd": "python scripts/gen_tech.py --start 2024-03-15 --end 2024-08-07 --price_folder dataset/CSMD50_feat/val/price --db <临时库>",
+    "backtest_cmd": "python backtest/run_backtest_fusion.py --views tech --weights 1.0 --score_th 0.0 --start 2024-03-15 --end 2024-08-07 --price_folder dataset/CSMD50_feat/val/price --tag api_tech_val --db <临时库>",
+    "engine": "backtest/engine_v2.py（与测试期 api_tech / api_f_val 完全同一套成本、T+1、滑点、止损参数）",
+    "db": "使用临时库，未写入主库 app/data/lightquant.db，不污染 tech-v1 的测试期记录",
+    "output": "backtest/result_v2/api_tech_val/{summary.json, nav.csv, trades.csv}"
+  },
+  "market_regime": {
+    "period": "2024-03-15 ~ 2024-08-07",
+    "trade_days": 98,
+    "equal_weight_buy_hold_cum_from_price_csv": -0.0240,
+    "equal_weight_mdd_from_price_csv": 0.0683,
+    "stocks_up_ratio": 0.42,
+    "monthly": {
+      "2024-03": -0.0003,
+      "2024-04": 0.0212,
+      "2024-05": 0.0041,
+      "2024-06": -0.0102,
+      "2024-07": -0.0082,
+      "2024-08": -0.0301
+    },
+    "verdict": "下跌/震荡市：等权买入持有为负收益，仅 42% 个股上涨"
+  },
+  "strategy": {
+    "views": "tech（单视角，权重 1.0）",
+    "score_th": 0.0,
+    "bars": 94,
+    "first_date": "2024-03-21",
+    "last_date": "2024-08-07",
+    "cum_return": 0.04076,
+    "arr": 0.11432,
+    "sharpe": 1.8214,
+    "mdd": 0.01983,
+    "mdd_start": "2024-07-19",
+    "mdd_end": "2024-08-06",
+    "calmar": 5.7653,
+    "ir_vs_equal_weight": 2.3890,
+    "total_trades": 1054,
+    "total_fee": 82207.49,
+    "stop_loss_exits": 0,
+    "take_profit_exits": 0,
+    "per_stock_acc": 0.5538,
+    "self_checks_passed": 7
+  },
+  "benchmark_same_engine": {
+    "cum_return": -0.02918,
+    "mdd": 0.06857,
+    "note": "引擎口径，从首个可交易信号日 2024-03-21 起算 94 天；与价格 CSV 口径的 -2.40%/98 天不同，二者区间不同，论文中统一引用引擎口径"
+  },
+  "two_regime_comparison": {
+    "test_uptrend_2024_08_08_to_12_31": {
+      "market": "等权买入持有 +18.08%，84% 个股上涨（引擎口径 +19.04%，MDD 9.74%）",
+      "strategy_cum": 0.15098,
+      "strategy_sharpe": 3.3732,
+      "strategy_mdd": 0.03335,
+      "ir": -0.61659,
+      "reading": "策略绝对收益跑输基准，因为平均仅约三成时间持仓，错过单边上涨的 beta"
+    },
+    "val_downtrend_2024_03_15_to_08_07": {
+      "market": "等权买入持有 -2.40%，42% 个股上涨",
+      "strategy_cum": 0.04076,
+      "strategy_sharpe": 1.8214,
+      "strategy_mdd": 0.01983,
+      "ir": 2.3890,
+      "reading": "同一策略在下跌市取得正收益且回撤显著小于基准，信息比为正"
+    },
+    "conclusion": "策略为防守/择时型：上涨市中因降低暴露而少赚，下跌市中因降低暴露而抗跌并获得正超额。'绝对收益跑输基准'由 beta 暴露不足解释，不是策略无效；风险调整后两段均优于或接近基准。"
+  },
+  "caveats": [
+    "本段为验证集区间，该区间在训练时仅用于早停与阈值校准，未参与参数更新，但不构成完全样本外；论文须注明。",
+    "本段只用技术面单视角：验证期无新闻语料，且融合权重的 fund 权重在标定中被判为 0，因此与测试期'融合'结果不同口径，不可直接横比，只能分行情段各自陈述。",
+    "两段交易日数与起止日不同（94 vs 93 个 bar），夏普为年化口径，跨段比较只可定性。"
+  ]
+}

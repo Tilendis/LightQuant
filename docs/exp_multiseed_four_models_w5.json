@@ -1,0 +1,174 @@
+{
+  "purpose": "四个纯价格五维模型补齐到各 3 个种子（37/43/101），使\"同构集成 vs 单成员\"的比较从单种子对单种子变为可对均值比较",
+  "provenance": {
+    "base_command": "python run.py --dataset CSMD50 --use_news False --model {lstm|bi_lstm|alstm|adv_lstm} --useGPU False --epochs 300 --look_back_window 5 --batch_size 64 --label_smoothing False --seed {43|101}",
+    "args_evidence": "本轮四个新跑的日志首行 [args] 均回显 model / seed / look_back_window=5 / label_smoothing=False / input_size=5 / use_news=False / batch_size=64",
+    "seed_sets": "LSTM / BiLSTM / AdvLSTM 为 37/43/101（seed37 用各模型原基线权重，43 与 101 为本轮新跑）；ALSTM 沿用既有口径 43/101/2024（result/seeds_summary.json），未重跑。四组种子集不完全一致，跨模型比较只看均值区间，不做逐种子配对检验。",
+    "adv_lstm_params": "epsilon=0.1, perturbation_size=0.1（run.py 默认，与原基线一致）",
+    "ensemble_source": "result/CSMD50_w5_ensemble/ensemble_result.json，四个成员权重均为 seed37 单种子 .pth",
+    "missing_files": []
+  },
+  "models": [
+    {
+      "model": "LSTM",
+      "n_seeds": 3,
+      "acc_mean": 0.534194,
+      "acc_std": 0.002812,
+      "mcc_mean": 0.063415,
+      "mcc_std": 0.005995,
+      "f1_mean": 0.408226,
+      "f1_std": 0.032122,
+      "per_seed": [
+        {
+          "seed": 37,
+          "acc": 0.5374193548387097,
+          "mcc": 0.07030423687745092,
+          "f1": 0.4414437808361465,
+          "source": "result/CSMD50_w5_nols_lstm/test_result/lstm.txt"
+        },
+        {
+          "seed": 43,
+          "acc": 0.5329032258064517,
+          "mcc": 0.06055931663602304,
+          "f1": 0.40590809628008756,
+          "source": "result/CSMD50_w5_nols_lstm_s43/test_result/lstm.txt"
+        },
+        {
+          "seed": 101,
+          "acc": 0.532258064516129,
+          "mcc": 0.05938291584651354,
+          "f1": 0.3773260807328944,
+          "source": "result/CSMD50_w5_nols_lstm_s101/test_result/lstm.txt"
+        }
+      ]
+    },
+    {
+      "model": "BiLSTM",
+      "n_seeds": 3,
+      "acc_mean": 0.537133,
+      "acc_std": 0.00939,
+      "mcc_mean": 0.069975,
+      "mcc_std": 0.019532,
+      "f1_mean": 0.388536,
+      "f1_std": 0.087844,
+      "per_seed": [
+        {
+          "seed": 37,
+          "acc": 0.5460215053763441,
+          "mcc": 0.08839228567738465,
+          "f1": 0.4686634784797382,
+          "source": "result/CSMD50_w5_nols_bi_lstm/test_result/bi_lstm.txt"
+        },
+        {
+          "seed": 43,
+          "acc": 0.5380645161290323,
+          "mcc": 0.07204061349527012,
+          "f1": 0.40233722871452426,
+          "source": "result/CSMD50_w5_nols_bi_lstm_s43/test_result/bi_lstm.txt"
+        },
+        {
+          "seed": 101,
+          "acc": 0.5273118279569893,
+          "mcc": 0.04949328829719309,
+          "f1": 0.29460847240051347,
+          "source": "result/CSMD50_w5_nols_bi_lstm_s101/test_result/bi_lstm.txt"
+        }
+      ]
+    },
+    {
+      "model": "ALSTM",
+      "n_seeds": 3,
+      "acc_mean": 0.532975,
+      "acc_std": 0.005399,
+      "mcc_mean": 0.060958,
+      "mcc_std": 0.01162,
+      "f1_mean": 0.374905,
+      "f1_std": 0.052084,
+      "per_seed": [
+        {
+          "seed": 43,
+          "acc": 0.5273118279569893,
+          "mcc": 0.048867155149227286,
+          "f1": 0.31483790523690774,
+          "source": "result/base_alstm_s43/test_result/alstm.txt"
+        },
+        {
+          "seed": 101,
+          "acc": 0.5335483870967742,
+          "mcc": 0.0619657924268524,
+          "f1": 0.40753892379131385,
+          "source": "result/base_alstm_s101/test_result/alstm.txt"
+        },
+        {
+          "seed": 2024,
+          "acc": 0.5380645161290323,
+          "mcc": 0.07204061349527012,
+          "f1": 0.40233722871452426,
+          "source": "result/base_alstm_s2024/test_result/alstm.txt"
+        }
+      ]
+    },
+    {
+      "model": "AdvLSTM",
+      "n_seeds": 3,
+      "acc_mean": 0.526022,
+      "acc_std": 0.006169,
+      "mcc_mean": 0.045287,
+      "mcc_std": 0.015345,
+      "f1_mean": 0.309522,
+      "f1_std": 0.049987,
+      "per_seed": [
+        {
+          "seed": 37,
+          "acc": 0.5301075268817205,
+          "mcc": 0.05593260639785802,
+          "f1": 0.31611893583724565,
+          "source": "result/CSMD50_w5_nols_adv_lstm/test_result/adv_lstm.txt"
+        },
+        {
+          "seed": 43,
+          "acc": 0.5189247311827957,
+          "mcc": 0.027697085632650154,
+          "f1": 0.25656364240611496,
+          "source": "result/CSMD50_w5_nols_adv_lstm_s43/test_result/adv_lstm.txt"
+        },
+        {
+          "seed": 101,
+          "acc": 0.5290322580645161,
+          "mcc": 0.052230968358177775,
+          "f1": 0.3558823529411764,
+          "source": "result/CSMD50_w5_nols_adv_lstm_s101/test_result/adv_lstm.txt"
+        }
+      ]
+    }
+  ],
+  "ensemble_reevaluation": {
+    "avg4_acc": 0.5404301075268817,
+    "mean_of_member_three_seed_means": 0.532581,
+    "delta_vs_three_seed_member_mean_pp": 0.7849,
+    "mean_of_seed37_members": 0.536667,
+    "delta_vs_seed37_member_mean_pp": 0.3763,
+    "strongest_seed37_member": {
+      "model": "bi_lstm",
+      "acc": 0.5460215053763441,
+      "delta_pp": -0.5591
+    },
+    "strongest_three_seed_mean_member": {
+      "model": "BiLSTM",
+      "acc": 0.537133,
+      "delta_pp": 0.3297
+    },
+    "verdict": "集成 54.04% 比\"同批 seed37 成员均值\" 53.67% 高 +0.38pp，比\"四模型三种子成员均值\" 53.26% 高 +0.78pp，但比 seed37 里最高的单个成员（BiLSTM 54.60%）低 0.56pp。因此\"同构集成净亏\"不能作为结论；正确表述是：同构集成相对成员均值有小幅增益（+0.38~+0.78pp），但不能稳定超过运气最好的单个成员，增益来源不稳定。"
+  },
+  "findings": [
+    "四模型三种子均值为 LSTM 53.42%、BiLSTM 53.71%、ALSTM 53.30%、AdvLSTM 52.60%，均值区间 1.11pp；原先把各模型单种子结果当作能力值时，最大与最小相差 1.59pp，补种子后真实差距收窄。",
+    "AdvLSTM 的种子波动最大（±0.62pp）且均值最低（52.60%），其 F1 种子间从 0.2566 到 0.3559，说明对抗训练在该数据集上不稳定。",
+    "四模型集成 54.04%（seed37 权重）相对同批成员均值 53.67% 仅 +0.38pp；相对四模型三种子均值 53.26% 为 +0.78pp。",
+    "集成不能稳定超过最好单成员：BiLSTM 三种子均值 53.71%，集成只高 +0.33pp。"
+  ],
+  "caveats": [
+    "集成结果只有 seed37 权重一套，未做\"成员各自多种子再集成\"；因此集成与多种子均值的比较不是同分布对照，只能作量级参考。",
+    "四模型 AUC/概率质量未核对，集成用的是概率平均，成员若存在系统性负类偏置会稀释集成收益。",
+    "n=3 的种子统计仍不足以做显著性检验，各模型均值只用于描述能力区间。"
+  ]
+}

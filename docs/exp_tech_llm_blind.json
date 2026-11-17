@@ -1,0 +1,32 @@
+{
+  "prompt_version": "tech-llm-blind-v1",
+  "base_prompt_version": "tech-v1",
+  "model": "glm-4-flash",
+  "blind": true,
+  "window": [
+    "2024-12-02",
+    "2024-12-30"
+  ],
+  "symbols": 50,
+  "dates": 21,
+  "rows": 1050,
+  "agree_with_base": 844,
+  "agree_rate": 0.8038,
+  "llm_signal_counts": {
+    "HOLD": 899,
+    "BUY": 45,
+    "SELL": 106
+  },
+  "base_signal_counts": {
+    "HOLD": 969,
+    "SELL": 81
+  },
+  "llm_stats": {
+    "in_tokens": 229899,
+    "out_tokens": 42055,
+    "llm_calls": 1050,
+    "failed": 0,
+    "fallback": 0
+  },
+  "note": "技术面 LLM 盲判：prompt 不含模型方向，用于检验 LLM 的独立判断力"
+}

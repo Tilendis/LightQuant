@@ -1,0 +1,47 @@
+{
+  "purpose": "为 BiLSTM+十维 54.82% 提供多种子稳定性证据，消除'单种子运气'的质疑",
+  "provenance": {
+    "base_config": "configs/exp_feat_bi.yaml（model=bi_lstm, input_size=10, look_back_window=5, label_smoothing=false, epochs=300, lr=3e-4, batch=64, hidden=128, layers=2）",
+    "seed37_dir": "result/CSMD50_w5_feat_bi（线上推理权重，未重跑、未覆盖）",
+    "seed43_cmd": "python run.py --config configs/exp_feat_bi.yaml --seed 43 --model_save_folder result/exp_feat_bi_s43/model_saved/ --figure_save_folder result/exp_feat_bi_s43/figure/ --test_result_save_folder result/exp_feat_bi_s43/test_result/",
+    "seed101_cmd": "python run.py --config configs/exp_feat_bi.yaml --seed 101 --model_save_folder result/exp_feat_bi_s101/model_saved/ --figure_save_folder result/exp_feat_bi_s101/figure/ --test_result_save_folder result/exp_feat_bi_s101/test_result/",
+    "stopping": "三个种子均在 epoch 55 触发早停（seed 37 同口径亦为早停）",
+    "source_files": [
+      "result/CSMD50_w5_feat_bi/test_result/bi_lstm.txt",
+      "result/exp_feat_bi_s43/test_result/bi_lstm.txt",
+      "result/exp_feat_bi_s101/test_result/bi_lstm.txt"
+    ]
+  },
+  "per_seed": [
+    {"seed": 37,  "acc": 0.5481720430107527, "mcc": 0.09404396905529387, "f1": 0.42264358340203345},
+    {"seed": 43,  "acc": 0.5498924731182796, "mcc": 0.10020611102973102, "f1": 0.39103869653767825},
+    {"seed": 101, "acc": 0.5464516129032259, "mcc": 0.09061880647270949, "f1": 0.4130253270247704}
+  ],
+  "aggregate": {
+    "n_seeds": 3,
+    "acc_mean": 0.548172,
+    "acc_std": 0.001720,
+    "mcc_mean": 0.094956,
+    "mcc_std": 0.004858,
+    "f1_mean": 0.408903,
+    "f1_std": 0.016201,
+    "note": "std 为样本标准差（n-1）"
+  },
+  "cross_architecture_table": [
+    {"arch": "ALSTM", "features": "五维（默认）", "seeds": 3, "acc": "53.30% ± 0.54", "source": "result/base_alstm_s{43,101,2024}"},
+    {"arch": "ALSTM", "features": "十维", "seeds": 3, "acc": "54.84% ± 0.13", "source": "result/exp_feat_alstm_s{43,101,2024}"},
+    {"arch": "BiLSTM", "features": "五维（默认）", "seeds": 3, "acc": "53.71% ± 0.94", "source": "result/CSMD50_w5_nols_bi_lstm + _s43 + _s101"},
+    {"arch": "BiLSTM", "features": "十维", "seeds": 3, "acc": "54.82% ± 0.17", "source": "result/CSMD50_w5_feat_bi + exp_feat_bi_s{43,101}"}
+  ],
+  "findings": [
+    "十维特征在两种独立架构上复现到 0.02pp 以内（ALSTM 54.84 ± 0.13、BiLSTM 54.82 ± 0.17），说明增益来自特征本身而非某个架构的偶然性。",
+    "同一组特征把原本相差 1.30pp 的两个基线（ALSTM 53.30% / BiLSTM 54.60%）拉到同一水平线，提示该数据集在该任务上的判别上限约在 54.8% 附近。",
+    "BiLSTM 组相对自身五维基线（补种子后 53.71% ± 0.94，n=3）的增量为 +1.10pp，Welch t=-2.00、p=0.175，n=3 vs n=3 下不显著；因此 BiLSTM 组的提升仍只作描述性陈述，显著性结论以 ALSTM 组（+1.54pp，Welch t=4.81）为准。"
+  ],
+  "caveats": [
+    "BiLSTM 五维基线已补到 3 个种子（seed 37/43/101），与十维版可比，但 n=3 的 Welch 检验 p=0.175 不显著；该组仍不能声称'在最强基线上也有显著提升'。",
+    "五维三种子的 ACC 方差达 ±0.94pp（远大于十维的 ±0.17pp），提示该数据集上单种子 ACC 的抽样噪声不可忽略，此前用单种子 54.60% 作为五维基线会高估该基线约 0.89pp。",
+    "三个种子的早停轮次相同（55），早停本身基于验证集损失，因此测试集指标受验证集早停影响，属常规做法但应在论文说明。",
+    "MCC 与 F1 的种子间波动（MCC ±0.005、F1 ±0.016）大于 ACC 波动，说明 ACC 的稳定性部分来自类不平衡下的多数类占比。"
+  ]
+}

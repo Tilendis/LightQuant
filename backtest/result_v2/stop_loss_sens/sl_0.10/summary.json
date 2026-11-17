@@ -1,0 +1,54 @@
+{
+  "tag": "sl_0.10",
+  "config": {
+    "initial_cash": 100000.0,
+    "position_pct": 0.95,
+    "lot_size": 1,
+    "commission_rate": 0.0003,
+    "min_commission": 5.0,
+    "stamp_duty_rate": 0.001,
+    "slippage_rate": 0.0005,
+    "threshold": 0.5,
+    "rf_annual": 0.02,
+    "take_profit_pct": 0.0,
+    "stop_loss_pct": 0.1
+  },
+  "portfolio": {
+    "stocks": 50,
+    "bars": 93,
+    "first_date": "2024-08-14",
+    "last_date": "2024-12-31",
+    "cum_return": 0.12375418487548484,
+    "arr": 0.37656068063494885,
+    "sharpe": 2.684232022578522,
+    "mdd": 0.03808725881326037,
+    "mdd_start": "2024-08-19",
+    "mdd_end": "2024-09-13",
+    "calmar": 9.886788715386531,
+    "ir_vs_equal_weight": -0.8890418514546388,
+    "bench_cum_return": 0.19042742338144159,
+    "bench_mdd": 0.09741937565179118,
+    "total_trades": 950,
+    "total_fee": 77563.56000000006,
+    "stop_loss_exits": 25,
+    "take_profit_exits": 0,
+    "final_cash_negative": false
+  },
+  "checks": {
+    "nav_len_matches_dates": true,
+    "no_nan_in_nav": true,
+    "no_negative_equity": true,
+    "mdd_span_covers_trough": true,
+    "mdd_equals_recomputed": true,
+    "metrics_finite": true,
+    "trade_pairs_balanced": true
+  },
+  "per_stock_mean": {
+    "acc": 0.546021505376344,
+    "cum_return": 0.12376259727336761,
+    "sharpe": 1.4824667401406328,
+    "mdd": 0.0827309377370661,
+    "trades": 19.0,
+    "total_fee": 1551.2712000000001
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "purpose": "为 BiLSTM 五维基线补齐多种子，使表 5-1 的跨特征集对照从「单种子 vs 三种子」变成可比的 n=3 vs n=3",
+  "provenance": {
+    "base_command": "python run.py --dataset CSMD50 --use_news False --model bi_lstm --useGPU False --epochs 300 --look_back_window 5 --batch_size 64 --label_smoothing False",
+    "feature_columns": "默认五列价格 ['Open','High','Low','Close','Adj Close']（utils/price_dataloader.py DEFAULT_FEATURE_COLUMNS），未传 --feature_columns",
+    "seed37_dir": "result/CSMD50_w5_nols_bi_lstm（原基线，未重跑、未覆盖）",
+    "seed43_cmd": "python run.py ... --seed 43 --model_save_folder result/CSMD50_w5_nols_bi_lstm_s43/model_saved/ --figure_save_folder .../figure/ --test_result_save_folder .../test_result/ --history_output .../history_output/",
+    "seed101_cmd": "同上，--seed 101，目录替换为 result/CSMD50_w5_nols_bi_lstm_s101",
+    "args_evidence": "本轮日志首行 [args] 已回显 look_back_window=5 / label_smoothing=False / input_size=5 / seed=43|101 / model=bi_lstm，参数自证",
+    "stopping": "seed 37 在 epoch 90 早停（result/CSMD50_w5_nols_bi_lstm/run_log.txt 可查）；seed 43 与 seed 101 的当轮日志未落盘留档，此前记录的 epoch 70 / 90 无法复核，论文中不单列这两个轮次（早停均基于验证集损失，patience 30）",
+    "source_files": [
+      "result/CSMD50_w5_nols_bi_lstm/test_result/bi_lstm.txt",
+      "result/CSMD50_w5_nols_bi_lstm_s43/test_result/bi_lstm.txt",
+      "result/CSMD50_w5_nols_bi_lstm_s101/test_result/bi_lstm.txt"
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 37,
+      "acc": 0.5460215053763441,
+      "mcc": 0.08839228567738465,
+      "f1": 0.4686634784797382,
+      "loss": 0.6914753742413978,
+      "source": "result/CSMD50_w5_nols_bi_lstm/test_result/bi_lstm.txt"
+    },
+    {
+      "seed": 43,
+      "acc": 0.5380645161290323,
+      "mcc": 0.07204061349527012,
+      "f1": 0.40233722871452426,
+      "loss": 0.6887469169211714,
+      "source": "result/CSMD50_w5_nols_bi_lstm_s43/test_result/bi_lstm.txt"
+    },
+    {
+      "seed": 101,
+      "acc": 0.5273118279569893,
+      "mcc": 0.04949328829719309,
+      "f1": 0.29460847240051347,
+      "loss": 0.6949240001913619,
+      "source": "result/CSMD50_w5_nols_bi_lstm_s101/test_result/bi_lstm.txt"
+    }
+  ],
+  "aggregate": {
+    "n_seeds": 3,
+    "acc_mean": 0.537133,
+    "acc_std": 0.00939,
+    "mcc_mean": 0.069975,
+    "mcc_std": 0.019532,
+    "f1_mean": 0.388536,
+    "f1_std": 0.087844,
+    "note": "std 为样本标准差（n-1）"
+  },
+  "welch_vs_feat10": {
+    "acc": {
+      "t": -2.003,
+      "p": 0.175,
+      "diff_pp": 1.1039
+    },
+    "mcc": {
+      "t": -2.1498,
+      "p": 0.1504,
+      "diff_pp": 0.02498
+    },
+    "f1": {
+      "t": -0.3949,
+      "p": 0.7289,
+      "diff_pp": 0.02037
+    }
+  },
+  "cross_architecture_table": [
+    {
+      "arch": "ALSTM",
+      "features": "五维（默认）",
+      "seeds": 3,
+      "acc": "53.30% ± 0.54",
+      "source": "result/base_alstm_s{43,101,2024}"
+    },
+    {
+      "arch": "ALSTM",
+      "features": "十维",
+      "seeds": 3,
+      "acc": "54.84% ± 0.13",
+      "source": "result/exp_feat_alstm_s{43,101,2024}"
+    },
+    {
+      "arch": "BiLSTM",
+      "features": "五维（默认）",
+      "seeds": 3,
+      "acc": "53.71% ± 0.94",
+      "source": "result/CSMD50_w5_nols_bi_lstm + _s43 + _s101"
+    },
+    {
+      "arch": "BiLSTM",
+      "features": "十维",
+      "seeds": 3,
+      "acc": "54.82% ± 0.17",
+      "source": "result/CSMD50_w5_feat_bi + exp_feat_bi_s{43,101}"
+    }
+  ],
+  "findings": [
+    "五维 BiLSTM 三种子 53.71%±0.94（单种子 seed 37 的 54.60% 落在区间上沿，属偏高的一次抽样）。",
+    "十维相对五维的增量由「单种子对比下的 +0.22pp」修正为 +1.10pp（0.5482 vs 0.5371），方向不变、幅度变大。",
+    "十维的种子间波动（ACC ±0.17pp）明显小于五维（±0.94pp），说明十维不仅抬高了均值也压低了方差。",
+    "Welch 检验：ACC t=-2.00 p=0.175，MCC t=-2.15 p=0.150，F1 t=-0.39 p=0.729（n=3 vs n=3）。"
+  ],
+  "caveats": [
+    "n=3 每组，Welch 检验的统计效力很低，p 值仅供参考；论文不得据此外推「特征一定带来提升」。",
+    "五维的三种子方差（±0.94pp）已接近十维两架构间 0.02pp 的差距量级，说明该数据集上 ACC 的种子噪声本身就不可忽略。",
+    "seed 101 的 F1 明显偏低（0.2946 vs 0.4687 / 0.4023），提示该种子落在较差的局部解，属正常方差而非流程问题；其早停轮次因日志未留档不再单列。",
+    "三个种子的早停均基于验证集损失，测试集指标受早停轮次影响，属常规做法但论文需说明。"
+  ]
+}

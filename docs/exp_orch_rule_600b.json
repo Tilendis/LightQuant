@@ -1,0 +1,31 @@
+{
+  "prompt_version": "fusion-orch-agent-v1r600b",
+  "spec": "agent",
+  "view_spec": {
+    "tech": "tech-agent-v1",
+    "fund": "fund-agent-v1",
+    "sent": "sent-v1"
+  },
+  "sent_max_lag_days": 5,
+  "window": [
+    "2024-12-16",
+    "2024-12-31"
+  ],
+  "symbols": 50,
+  "dates": 12,
+  "dry_run": false,
+  "branch_counts": {
+    "minor": 249,
+    "unanimous": 314,
+    "conflict_llm": 20,
+    "conflict_review_hold(review:R1 违规引用估值: R1 技术面震荡，情绪面利好，新闻支持情绪面，但估值不支持)": 1,
+    "conflict_review_hold(review:R5 技术面缺失或 score 恰为 0，证据不足待复核)": 15,
+    "conflict_review_hold(review:R1 违规引用估值: RSI6超买，均线多头，量比1.0，短线矛盾；PE/PB估)": 1
+  },
+  "llm_stats": {
+    "in_tokens": 33636,
+    "out_tokens": 2379,
+    "llm_calls": 37
+  },
+  "note": "本层只用于解释与展示，不进入回测信号链；回测仍读 fusion-val-v1"
+}

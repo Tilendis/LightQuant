@@ -1,0 +1,2 @@
+﻿BiLSTM + 5 technical indicators (10-dim input), same caliber as CSMD50_w5_base
+python run.py --model bi_lstm --use_news False --useGPU False --epochs 300 --look_back_window 5 --batch_size 64 --label_smoothing False --dataset CSMD50_feat --input_size 10 --feature_columns "Open,High,Low,Close,Adj Close,Return,RSI6,MACD_Hist,BIAS5,Amplitude" --model_save_folder result/CSMD50_w5_feat_bi/model_saved/ --figure_save_folder result/CSMD50_w5_feat_bi/figure/ --test_result_save_folder result/CSMD50_w5_feat_bi/test_result/

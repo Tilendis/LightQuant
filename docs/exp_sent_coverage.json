@@ -1,0 +1,49 @@
+{
+  "purpose": "记录情绪面研判在 测试期的实测覆盖与信号时效，作为论文中情绪视角可信度的证据，避免只写定性局限",
+  "provenance": {
+    "db": "app/data/lightquant.db（只读查询，未修改任何记录）",
+    "view": "sent",
+    "prompt_version": "sent-v1",
+    "trade_date_source": "prices 表 DISTINCT date",
+    "grid": "50 只股票 × 97 个交易日 = 4850 个单元格"
+  },
+  "raw_counts": {
+    "judgement_rows": 1046,
+    "distinct_dates": 143,
+    "distinct_dates_are_trade_days": 97,
+    "distinct_dates_non_trade": 46,
+    "non_trade_breakdown": {
+      "saturday": 21,
+      "sunday": 19,
+      "holiday_or_weekday_off": 6,
+      "note": "含 2024-10-01 ~ 10-07 国庆假期"
+    },
+    "stocks_covered": 50,
+    "max_rows_one_stock": {"symbol": "中信证券", "rows": 123, "days": 123},
+    "min_rows_one_stock": {"symbol": "国电南瑞", "rows": 3}
+  },
+  "non_trade_days_verdict": {
+    "is_dirty_data": false,
+    "reason": "周末与节假日确有新闻发布，情绪面按新闻日落库、融合时 ffill 到下一交易日，是事件型数据的正确处理；评估阶段已排除这些日期（sent 准确率样本 n=920 即当日有新闻的单元格数）",
+    "action": "不删除、不修改"
+  },
+  "staleness_by_symbol_date": {
+    "cells_total": 4850,
+    "same_day_news": {"cells": 920, "ratio": 0.1897},
+    "gap_1_3_days": {"cells": 984, "ratio": 0.2029},
+    "gap_4_7_days": {"cells": 861, "ratio": 0.1775},
+    "gap_over_7_days": {"cells": 1896, "ratio": 0.3909},
+    "no_history_at_all": {"cells": 189, "ratio": 0.0390},
+    "max_gap_days": 66
+  },
+  "finding": "按股票×交易日计，仅 19.0% 的情绪判断基于当日新闻，39.1% 基于 8 天以上、最长 66 天前的新闻，而 fuse_views.py 的 ffill 不做时间衰减（代码第 134 行自述该局限）。",
+  "why_not_fixed": [
+    "验证期（2024-03-15~08-07）无新闻语料，无法在验证集上标定衰减参数或情绪权重；在测试期上调衰减形式属于测试集泄漏，按既定口径纪律不做。",
+    "因此该问题不通过调参解决，只在论文中如实陈述：情绪视角的有效样本仅约两成交易日，其余为陈旧信号外推；其 0.25 权重未经检验集标定。"
+  ],
+  "paper_usage": [
+    "第 5 章情绪视角小节：给出 920/4850 的当日覆盖与 66 天最大间隔，说明准确率 0.5054 仅在这 920 个单元格上计算，不宣称全样本有效。",
+    "第 5 章融合小节：解释融合准确率 0.5453 未超过技术面单视角 0.5482 的可能来源之一——情绪面信号大面积陈旧且权重未标定。",
+    "第 7 章展望：补验证期新闻语料 + 时效衰减 + 情绪权重的验证集标定，作为后续工作。"
+  ]
+}

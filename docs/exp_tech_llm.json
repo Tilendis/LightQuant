@@ -1,0 +1,31 @@
+{
+  "prompt_version": "tech-llm-v1",
+  "base_prompt_version": "tech-v1",
+  "model": "glm-4-flash",
+  "blind": false,
+  "window": [
+    "2024-12-02",
+    "2024-12-30"
+  ],
+  "symbols": 50,
+  "dates": 21,
+  "rows": 1050,
+  "agree_with_base": 1050,
+  "agree_rate": 1.0,
+  "llm_signal_counts": {
+    "HOLD": 969,
+    "SELL": 81
+  },
+  "base_signal_counts": {
+    "HOLD": 969,
+    "SELL": 81
+  },
+  "llm_stats": {
+    "in_tokens": 258479,
+    "out_tokens": 49482,
+    "llm_calls": 1050,
+    "failed": 0,
+    "fallback": 0
+  },
+  "note": "技术面 LLM 解读层：底分来自本地 BiLSTM，LLM 确认或修正方向并写出理由"
+}

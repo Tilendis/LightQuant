@@ -1,0 +1,24 @@
+# 实验 A1：ALSTM + 5 个技术指标（输入 10 维），同口径基线为 base_alstm
+# 用法：python run.py --config configs/exp_feat_alstm.yaml
+dataset: CSMD50_feat
+model: alstm
+use_news: false
+useGPU: false
+use_swanlab: false
+epochs: 300
+look_back_window: 5
+batch_size: 64
+layers: 2
+hidden_size: 128
+attention_size: 128
+dropout: 0.1
+lr: 0.0003
+weight_decay: 0.0001
+input_size: 10
+feature_columns: "Open,High,Low,Close,Adj Close,Return,RSI6,MACD_Hist,BIAS5,Amplitude"
+label_smoothing: false
+label_smoothing_epsilon: 0.1
+seed: 37
+model_save_folder: "./result/CSMD50_w5_feat/model_saved/"
+figure_save_folder: "./result/CSMD50_w5_feat/figure/"
+test_result_save_folder: "./result/CSMD50_w5_feat/test_result/"

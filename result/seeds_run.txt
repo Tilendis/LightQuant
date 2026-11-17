@@ -1,0 +1,20 @@
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/base_alstm.yaml --seed 43 --model_save_folder result/base_alstm_s43/model_saved/ --figure_save_folder result/base_alstm_s43/figure/ --test_result_save_folder result/base_alstm_s43/test_result/
+  seed=43 acc=0.5273 mcc=0.0489 f1=0.3148
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/base_alstm.yaml --seed 101 --model_save_folder result/base_alstm_s101/model_saved/ --figure_save_folder result/base_alstm_s101/figure/ --test_result_save_folder result/base_alstm_s101/test_result/
+  seed=101 acc=0.5335 mcc=0.0620 f1=0.4075
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/base_alstm.yaml --seed 2024 --model_save_folder result/base_alstm_s2024/model_saved/ --figure_save_folder result/base_alstm_s2024/figure/ --test_result_save_folder result/base_alstm_s2024/test_result/
+  seed=2024 acc=0.5381 mcc=0.0720 f1=0.4023
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/exp_feat_alstm.yaml --seed 43 --model_save_folder result/exp_feat_alstm_s43/model_saved/ --figure_save_folder result/exp_feat_alstm_s43/figure/ --test_result_save_folder result/exp_feat_alstm_s43/test_result/
+  seed=43 acc=0.5499 mcc=0.0972 f1=0.4378
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/exp_feat_alstm.yaml --seed 101 --model_save_folder result/exp_feat_alstm_s101/model_saved/ --figure_save_folder result/exp_feat_alstm_s101/figure/ --test_result_save_folder result/exp_feat_alstm_s101/test_result/
+  seed=101 acc=0.5477 mcc=0.0927 f1=0.4315
+[run] D:\03_Study\GraduationProject\LightQuant\.venv\Scripts\python.exe run.py --config configs/exp_feat_alstm.yaml --seed 2024 --model_save_folder result/exp_feat_alstm_s2024/model_saved/ --figure_save_folder result/exp_feat_alstm_s2024/figure/ --test_result_save_folder result/exp_feat_alstm_s2024/test_result/
+  seed=2024 acc=0.5475 mcc=0.0954 f1=0.3801
+
+== 汇总 ==
+base_alstm acc: mean=0.5330 std=0.0054 n=3
+base_alstm mcc: mean=0.0610 std=0.0116 n=3
+base_alstm f1: mean=0.3749 std=0.0521 n=3
+exp_feat_alstm acc: mean=0.5484 std=0.0013 n=3
+exp_feat_alstm mcc: mean=0.0951 std=0.0023 n=3
+exp_feat_alstm f1: mean=0.4165 std=0.0317 n=3

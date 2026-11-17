@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# 虚拟环境（1.6GB，不进库）
+.venv/
+venv/
+env/
+
+# 数据集（412MB，不进库；按 README 从 CSMD 原始来源获取）
+dataset/
+*.zip
+
+# 模型权重与训练中间产物（体积大、可复跑）
+*.pth
+*.pt
+model_cache/
+result/**/model_saved/
+backtest/result/**/*.csv
+
+# 实验产物里的大图（保留 txt/json 作为证据）
+result/**/figure/*.svg
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 本机临时
+*.log
+*.tmp
+run_log.txt
+run_err.txt
+
+# 认证签名密钥：每台机器首次运行自动生成，绝不入库
+app/data/.auth_secret
+
+# 本地回归与接口测试残留（主口径 test_fusion_3view 仍受版本管理，不整目录 ignore）
+backtest/_regress*/
+backtest/result/CSMD50_w5_base_alstm_sequential/
+backtest/result_v2/ab_*/
+backtest/result_v2/api_*/
+backtest/result_v2/cs_*/
+backtest/result_v2/fusion_draft/
+result/*/figure/
+result/*/run_manifest.txt
+result/exp_feat_*/
+result/seeds_run.err.txt
+docs/price_source_check.json
+scripts/check_price_source.py
+
+# 运行时数据库（24MB，重新初始化即可）
+app/data/lightquant.db
+app/data/lightquant.db-journal
+app/data/lightquant.db-wal
+app/data/lightquant.db-shm
+
+# 外部 Code Review 临时打包文件
+project_snapshot.txt
+
+# 截图目录
+screenshots/
+
+# Python 测试缓存
+.pytest_cache/
+
+# 回测交易明细（可复跑，不进库；summary.json 保留）
+backtest/result_v2/**/trades.csv
+
+# 临时备份 json
+docs/exp_orch_agent_nolag_bak.json

@@ -1,0 +1,25 @@
+{
+  "config": {
+    "split": "test",
+    "look_back_window": 5,
+    "ckpt": "./result/CSMD50_w5/model_saved/alstm.pth",
+    "topk": 5,
+    "n_samples": 4600,
+    "n_days": 92,
+    "avg_stocks_per_day": 50.0
+  },
+  "ranking_quality": {
+    "rank_ic_mean": 0.1214138820709043,
+    "rank_ic_std": 0.2634499125328676,
+    "rank_icir": 0.46086134895093916,
+    "ic_positive_rate": 0.6521739130434783,
+    "top5_precision_vs_realized": 0.1326086956521739,
+    "top5_random_precision": 0.1,
+    "top5_up_rate": 0.5173913043478261,
+    "all_stocks_up_rate": 0.4923913043478261,
+    "top5_mean_next_ret": 0.006407530813495166,
+    "all_stocks_mean_next_ret": 0.002086935502582045,
+    "top5_excess_vs_all": 0.00432059531091312
+  },
+  "note": "本脚本只评估排序质量，不含交易成本与仓位管理，不能用于收益结论。"
+}

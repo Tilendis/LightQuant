@@ -1,0 +1,22 @@
+{
+  "val": {
+    "n_days": 98,
+    "cand_per_day_mean": 11.7,
+    "top_mean": -0.005,
+    "bot_mean": -0.061,
+    "spread_mean_pp": 0.056,
+    "spread_t": 0.4,
+    "spread_winrate": 0.531,
+    "days": 98
+  },
+  "test": {
+    "n_days": 91,
+    "cand_per_day_mean": 10.0,
+    "top_mean": 0.171,
+    "bot_mean": 0.126,
+    "spread_mean_pp": 0.044,
+    "spread_t": 0.25,
+    "spread_winrate": 0.549,
+    "days": 91
+  }
+}

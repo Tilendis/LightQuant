@@ -1,0 +1,144 @@
+{
+  "data": {
+    "total": 11819,
+    "train": 9752,
+    "val": 1150,
+    "test": 917,
+    "dim": 768,
+    "note": "全零向量代表当天无新闻，已剔除；不是中性新闻"
+  },
+  "baselines": [
+    {
+      "split": "train",
+      "n": 9752,
+      "up_rate": 0.464,
+      "always_up": 0.464,
+      "always_down": 0.536,
+      "random": 0.5
+    },
+    {
+      "split": "val",
+      "n": 1150,
+      "up_rate": 0.4539,
+      "always_up": 0.4539,
+      "always_down": 0.5461,
+      "random": 0.5
+    },
+    {
+      "split": "test",
+      "n": 917,
+      "up_rate": 0.4885,
+      "always_up": 0.4885,
+      "always_down": 0.5115,
+      "random": 0.5
+    }
+  ],
+  "train_acc": 0.6164,
+  "sequential": [
+    {
+      "split": "train",
+      "n": 9752,
+      "acc": 0.6164,
+      "ic": 0.2893,
+      "long_ratio": 0.3733
+    },
+    {
+      "split": "val",
+      "n": 1150,
+      "acc": 0.5252,
+      "ic": 0.0221,
+      "long_ratio": 0.4209
+    },
+    {
+      "split": "test",
+      "n": 917,
+      "acc": 0.5158,
+      "ic": 0.0454,
+      "long_ratio": 0.4122
+    }
+  ],
+  "buckets": [
+    {
+      "split": "val",
+      "buckets": [
+        {
+          "q": 0.0569,
+          "n": 230,
+          "up_rate": 0.4174
+        },
+        {
+          "q": 0.3579,
+          "n": 230,
+          "up_rate": 0.4348
+        },
+        {
+          "q": 0.4396,
+          "n": 230,
+          "up_rate": 0.4652
+        },
+        {
+          "q": 0.5073,
+          "n": 230,
+          "up_rate": 0.5217
+        },
+        {
+          "q": 0.586,
+          "n": 230,
+          "up_rate": 0.4304
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "buckets": [
+        {
+          "q": 0.0527,
+          "n": 184,
+          "up_rate": 0.4185
+        },
+        {
+          "q": 0.3496,
+          "n": 183,
+          "up_rate": 0.5137
+        },
+        {
+          "q": 0.4289,
+          "n": 183,
+          "up_rate": 0.5027
+        },
+        {
+          "q": 0.5045,
+          "n": 183,
+          "up_rate": 0.4918
+        },
+        {
+          "q": 0.5963,
+          "n": 184,
+          "up_rate": 0.5163
+        }
+      ]
+    }
+  ],
+  "cross_section": [
+    {
+      "split": "val",
+      "n_days": 98,
+      "cand_per_day": 11.7,
+      "top_mean_pct": -0.005,
+      "bot_mean_pct": -0.061,
+      "spread_pp": 0.056,
+      "spread_t": 0.4,
+      "winrate": 0.531
+    },
+    {
+      "split": "test",
+      "n_days": 91,
+      "cand_per_day": 10.0,
+      "top_mean_pct": 0.171,
+      "bot_mean_pct": 0.126,
+      "spread_pp": 0.044,
+      "spread_t": 0.25,
+      "winrate": 0.549
+    }
+  ]
+}

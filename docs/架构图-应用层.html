@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>LightQuant 应用层架构</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1680px;
+    background: #f6f8fa;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    color: #1f2933;
+    padding: 34px 40px 30px;
+  }
+  .title { font-size: 27px; font-weight: 700; letter-spacing: .5px; }
+  .sub { font-size: 13px; color: #6b7785; margin-top: 7px; line-height: 1.6; }
+  .rule { height: 2px; background: #d7dee6; margin: 18px 0 26px; }
+
+  /* 层 */
+  .layer { position: relative; }
+  .layer-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .tag {
+    font-size: 11px; font-weight: 700; color: #fff; background: #3d5a80;
+    padding: 3px 9px; border-radius: 3px; letter-spacing: .5px;
+  }
+  .layer-name { font-size: 15px; font-weight: 700; color: #35495e; }
+  .layer-note { font-size: 11.5px; color: #8a97a5; }
+
+  .row { display: flex; gap: 12px; }
+
+  .card {
+    background: #fff; border: 1px solid #dde4eb; border-radius: 6px;
+    padding: 11px 14px; flex: 1;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  }
+  .card.accent { border-left: 3px solid #3d5a80; }
+  .card.green  { border-left: 3px solid #2f7a52; }
+  .card.amber  { border-left: 3px solid #a8741a; }
+  .card.red    { border-left: 3px solid #a63d3d; }
+
+  .c-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .c-meta  { font-size: 11px; color: #7b8794; line-height: 1.55; }
+  .c-body  { font-size: 12px; color: #3e4c59; line-height: 1.62; margin-top: 5px; }
+  .kv { font-size: 11.5px; color: #4a5568; }
+  .kv b { color: #1f2933; }
+
+  .pill {
+    display: inline-block; font-size: 10.5px; padding: 1.5px 7px; border-radius: 9px;
+    background: #eef2f6; color: #46586b; margin: 2px 3px 0 0;
+  }
+  .pill.on { background: #e6f0ea; color: #2f7a52; }
+  .pill.off { background: #f5eaea; color: #a63d3d; }
+
+  /* 连接线 */
+  .flow { height: 26px; display: flex; align-items: center; justify-content: center; }
+  .flow span {
+    font-size: 11px; color: #93a1b0; padding: 0 10px;
+    border-top: 1px dashed #c3ced8;
+  }
+  .arrow-line { position: relative; height: 3px; background: #cbd5df; }
+  .arrow-line::after {
+    content: ""; position: absolute; right: -1px; top: -4px;
+    border-left: 7px solid #cbd5df; border-top: 5.5px solid transparent;
+    border-bottom: 5.5px solid transparent;
+  }
+
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+
+  .note-bar {
+    margin-top: 26px; padding: 13px 16px; background: #fff;
+    border: 1px solid #dde4eb; border-left: 3px solid #a8741a;
+    font-size: 11.5px; color: #4a5568; line-height: 1.75;
+  }
+  .note-bar b { color: #1f2933; }
+</style>
+</head>
+<body>
+
+<div class="title">LightQuant　股票趋势多模型研判与策略回测系统</div>
+<div class="sub">
+  应用层架构　|　技术栈 FastAPI + SQLite(WAL) + 原生 HTML/ES5 + 本地 ECharts　|　纯 CPU、断网可演示　|　15 张表 / 30 个接口 / 4 类角色
+</div>
+<div class="rule"></div>
+
+<!-- 角色层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">①</span><span class="layer-name">四类角色</span>
+    <span class="layer-note">role 枚举在 schema.sql 一处定义；每个写接口都过 need()，认证与授权两层分开</span>
+  </div>
+  <div class="row">
+    <div class="card accent">
+      <div class="c-title">投资者</div>
+      <div class="c-meta">investor</div>
+      <div class="c-body">看研判 · 订阅策略 · 看跟单净值</div>
+    </div>
+    <div class="card accent">
+      <div class="c-title">策略作者</div>
+      <div class="c-meta">author</div>
+      <div class="c-body">配止盈止损 · 提交回测 · 发布策略</div>
+    </div>
+    <div class="card red">
+      <div class="c-title">风控员</div>
+      <div class="c-meta">risk</div>
+      <div class="c-body">强平预警 · 账户监控 · 发帖拦截</div>
+    </div>
+    <div class="card green">
+      <div class="c-title">平台运营</div>
+      <div class="c-meta">operator</div>
+      <div class="c-body">多模型准确率 · 策略活跃度看板</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow"><span>HTTP + Bearer token（服务端签名，改一个字符即 401）</span></div>
+
+<!-- 前端层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">②</span><span class="layer-name">前端三页</span>
+    <span class="layer-note">原生 HTML + ES5 + 本地 ECharts，无构建链</span>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="c-title">行情研判</div>
+      <div class="c-body">K 线 + 四视角信号叠加（▲看多 / ▼看空，按视角分色）<br>研判表 · 公司财务块（ROE/毛利率/负债率/现金流，含同比差）</div>
+    </div>
+    <div class="card">
+      <div class="c-title">策略回测</div>
+      <div class="c-body">净值曲线 + 买入/卖出点 + 最大回撤阴影区间（markArea）<br>止盈止损参数 · 异步任务进度 · 已有结果下拉</div>
+    </div>
+    <div class="card">
+      <div class="c-title">运营看板</div>
+      <div class="c-body">多模型准确率折线 + 版本标注<br>策略活跃度（强信号柱 + 看多看空线 + 指标卡）</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow"><span>JSON</span></div>
+
+<!-- API 层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">③</span><span class="layer-name">接口层　FastAPI</span>
+    <span class="layer-note">30 个接口；scripts/selftest.py 一条命令跑完 60 项检查（只读 + 越权负测试，可反复跑）</span>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="c-title">读接口</div>
+      <div class="c-body">health · meta · market/stocks · market/kline<br>judgements/{symbol} · fundamentals/{symbol} · accuracy</div>
+    </div>
+    <div class="card">
+      <div class="c-title">回测与策略</div>
+      <div class="c-body">POST backtest/tasks（异步）· tasks · reports<br>strategies · publish（DRAFT → PUBLISHED）</div>
+    </div>
+    <div class="card">
+      <div class="c-title">订阅与风控</div>
+      <div class="c-body">subscriptions · follow-accounts/{aid}/advance<br>risk/scan · risk/events · posts/{pid}/moderate</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow"><span>ThreadPoolExecutor（单机演示，不引 Celery / Redis）</span></div>
+
+<!-- 研判层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">④</span><span class="layer-name">三视角研判 + 融合</span>
+    <span class="layer-note">每行落 judgements 并记 provider / model / temperature / prompt_version，可逐条复核</span>
+  </div>
+  <div class="row" style="align-items:stretch">
+    <div class="card" style="flex:1.05">
+      <div class="c-title">技术面　<span style="font-weight:400;color:#7b8794;font-size:11.5px">local + LLM 解读</span></div>
+      <div class="c-body">
+        本地 BiLSTM（10 维量价特征）出方向<br>
+        LLM 只写理由、不覆盖方向（锚定对照已验证）<br>
+        <span class="pill on">tech-v1</span>
+        <span class="pill on">tech-agent-v1</span>
+        <span class="pill off">tech-llm-blind-v1（盲判 47.02%，不上线）</span>
+      </div>
+    </div>
+    <div class="card" style="flex:1.05">
+      <div class="c-title">基本面　<span style="font-weight:400;color:#7b8794;font-size:11.5px">三层材料</span></div>
+      <div class="c-body">
+        估值分位（PE/PB）· 财报事件（fund_events）· 公司财务（fundamentals）<br>
+        定位是<b>风险提示层</b>（状态量，不择时）<br>
+        <span class="pill on">fund-rule-v1</span>
+        <span class="pill on">fund-agent-v3</span>
+      </div>
+    </div>
+    <div class="card" style="flex:1.05">
+      <div class="c-title">情绪面　<span style="font-weight:400;color:#7b8794;font-size:11.5px">新闻文本</span></div>
+      <div class="c-body">
+        LLM 情感打分 · 规则情感词 · 768 维语义向量（已检验，不可用）<br>
+        12 月窗口仅 6.2% 标的-日有真实向量<br>
+        <span class="pill on">sent-v1</span>
+        <span class="pill on">sent-agent-v1</span>
+      </div>
+    </div>
+    <div class="card amber" style="flex:1.35">
+      <div class="c-title">融合层　<span style="font-weight:400;color:#7b8794;font-size:11.5px">课题要求的"投票或加权"</span></div>
+      <div class="c-body">
+        <b>加权</b>：权重在验证集标定并冻结，测试集只跑一次<br>
+        <span class="kv">tech <b>0.90</b> / fund <b>0.00</b> / sent <b>0.10</b>　→ <b>fusion-test-3view</b></span><br>
+        <b>投票</b>：方向票数合成（fusion-vote-v1，作对照）<br>
+        <b>编排</b>：一致性 / 分歧度仲裁，<span class="kv">fusion-orch-agent-v1</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow"><span>分数矩阵（日期 × 标的 × 视角）</span></div>
+
+<!-- 回测层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">⑤</span><span class="layer-name">回测引擎</span>
+    <span class="layer-note">两套执行路径共用同一份研发分数；产物统一写 summary.json / nav.csv / trades.csv</span>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="c-title">择时引擎　engine_v2</div>
+      <div class="c-body">
+        按资金比例建仓 · 止盈止损（同日两端触发时止损优先）<br>
+        T+1 · 双边佣金 + 印花税 + 滑点 + 最低佣金 5 元<br>
+        滚动峰值 MDD 并返回起止日期 · IR 对等权持有基准
+      </div>
+    </div>
+    <div class="card">
+      <div class="c-title">截面引擎　engine_cross_section</div>
+      <div class="c-body">
+        TOP-N 等权轮动 · 取<i>上一交易日</i>分数、<i>当日开盘</i>成交（唯一可执行时点）<br>
+        Open 跟着复权（只调 Close 会让成交金额与净值脱节）<br>
+        8 项自检 · 12 个单元测试 · NaN 已转 null
+      </div>
+    </div>
+    <div class="card">
+      <div class="c-title">产物</div>
+      <div class="c-body">
+        summary.json（tag / config / portfolio / checks / per_stock_mean）<br>
+        nav.csv · trades.csv · per_stock.csv<br>
+        策略发布时指标取自 portfolio 段，不复制第二份
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow"><span>订阅 → 模拟跟单 → 风控扫描</span></div>
+
+<!-- 数据层 -->
+<div class="layer">
+  <div class="layer-head">
+    <span class="tag">⑥</span><span class="layer-name">数据层　SQLite（WAL）15 张表 / 90,815 行</span>
+    <span class="layer-note">明细见 docs/数据库表清单.md（由 scripts/dump_schema.py 现读生成）</span>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="c-title">输入</div>
+      <div class="c-body">
+        stocks 50 · prices 9,750（03-15~12-31）<br>
+        news 6,726 · valuations 10,001（2021~2024）<br>
+        fundamentals 984（50 只 × 报告期）· fund_events 458
+      </div>
+    </div>
+    <div class="card">
+      <div class="c-title">研判与任务</div>
+      <div class="c-body">
+        judgements 62,783（tech / fund / sent / fusion）<br>
+        backtest_tasks 20 · strategies 6
+      </div>
+    </div>
+    <div class="card">
+      <div class="c-title">业务与风控</div>
+      <div class="c-body">
+        users 4 · subscriptions 5 · follow_accounts 5<br>
+        risk_events 6 · posts 7 · post_moderation 10
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-bar">
+  <b>三条口径红线（写在代码注释里，不是事后补的说明）：</b>
+  ① 融合权重在验证集标定后冻结，测试集只跑一次；
+  ② 新闻只在决策层使用，不进价格特征；
+  ③ LLM 对 2024 下半年行情可能已有语料覆盖，历史段不报"胜率"，只报"与当日已知信息是否一致"。
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+# 实验 E2：把 A1 的十维输入迁到最强基线 BiLSTM（基线 54.60% / MCC 0.0884）
+# 目的：回应"改进为什么只做在非最强模型上"
+# 用法：python run.py --config configs/exp_feat_bi.yaml
+dataset: CSMD50_feat
+model: bi_lstm
+use_news: false
+useGPU: false
+use_swanlab: false
+epochs: 300
+look_back_window: 5
+batch_size: 64
+layers: 2
+hidden_size: 128
+attention_size: 128
+dropout: 0.1
+lr: 0.0003
+weight_decay: 0.0001
+input_size: 10
+feature_columns: "Open,High,Low,Close,Adj Close,Return,RSI6,MACD_Hist,BIAS5,Amplitude"
+label_smoothing: false
+label_smoothing_epsilon: 0.1
+seed: 37
+model_save_folder: "./result/CSMD50_w5_feat_bi/model_saved/"
+figure_save_folder: "./result/CSMD50_w5_feat_bi/figure/"
+test_result_save_folder: "./result/CSMD50_w5_feat_bi/test_result/"

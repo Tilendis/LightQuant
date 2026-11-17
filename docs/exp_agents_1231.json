@@ -1,0 +1,110 @@
+{
+  "model": "deepseek-flash",
+  "provider": "deepseek",
+  "prompt_versions": {
+    "tech": "tech-agent-v1",
+    "fund": "fund-agent-v1",
+    "sent": "sent-agent-v1"
+  },
+  "window": [
+    "2024-12-31",
+    "2024-12-31"
+  ],
+  "symbols": 50,
+  "dates": 1,
+  "views": [
+    "tech",
+    "fund",
+    "sent"
+  ],
+  "calls": 108,
+  "tokens": {
+    "in": 52723,
+    "out": 55328
+  },
+  "fallback": 0,
+  "fallback_rate": 0.0,
+  "metrics": {
+    "tech": {
+      "n": 0,
+      "hit": 0,
+      "acc": null,
+      "dist": {
+        "BUY": 0,
+        "SELL": 3,
+        "HOLD": 47
+      }
+    },
+    "fund": {
+      "n": 0,
+      "hit": 0,
+      "acc": null,
+      "dist": {
+        "BUY": 11,
+        "SELL": 11,
+        "HOLD": 28
+      }
+    },
+    "sent": {
+      "n": 0,
+      "hit": 0,
+      "acc": null,
+      "dist": {
+        "BUY": 1,
+        "SELL": 0,
+        "HOLD": 3
+      }
+    },
+    "vote": {
+      "n": 0,
+      "hit": 0,
+      "acc": null,
+      "dist": {
+        "BUY": 0,
+        "SELL": 0,
+        "HOLD": 4
+      }
+    },
+    "weighted": {
+      "n": 0,
+      "hit": 0,
+      "acc": null,
+      "dist": {
+        "BUY": 1,
+        "SELL": 12,
+        "HOLD": 37
+      }
+    },
+    "weighted_weights": {
+      "tech": 1.0,
+      "fund": 0.0,
+      "sent": 0.5
+    },
+    "score_th": 0.05,
+    "per_day": {
+      "2024-12-31": {
+        "tech": {
+          "n": 0,
+          "hit": 0,
+          "acc": null
+        },
+        "fund": {
+          "n": 0,
+          "hit": 0,
+          "acc": null
+        },
+        "sent": {
+          "n": 0,
+          "hit": 0,
+          "acc": null
+        },
+        "weighted": {
+          "n": 0,
+          "hit": 0,
+          "acc": null
+        }
+      }
+    }
+  },
+  "note": "三分析师：判断权在 LLM，BiLSTM/估值分位/新闻为工具返回值。情绪面无新闻时不落库（弃权，不投反对票）；加权融合只对有记录的视角求和；评估排除无次日行情的数据边界日。"
+}

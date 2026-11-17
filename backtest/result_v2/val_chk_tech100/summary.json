@@ -1,0 +1,72 @@
+{
+  "tag": "val_chk_tech100",
+  "config": {
+    "initial_cash": 100000.0,
+    "position_pct": 0.95,
+    "lot_size": 1,
+    "commission_rate": 0.0003,
+    "min_commission": 5.0,
+    "stamp_duty_rate": 0.001,
+    "slippage_rate": 0.0005,
+    "threshold": 0.5,
+    "rf_annual": 0.02,
+    "take_profit_pct": 0.0,
+    "stop_loss_pct": 0.0,
+    "views": [
+      "tech"
+    ],
+    "method": "weighted",
+    "score_th": 0.0,
+    "prompt_version": "tech-v1",
+    "pool_from": null,
+    "pool_frac": null,
+    "pos_from": null,
+    "pos_version": null,
+    "pos_th": null,
+    "pos_mode": null,
+    "pos_levels": null
+  },
+  "portfolio": {
+    "stocks": 50,
+    "bars": 89,
+    "first_date": "2024-03-28",
+    "last_date": "2024-08-07",
+    "cum_return": 0.06324397861090736,
+    "arr": 0.19197468556344632,
+    "sharpe": 3.160218042696263,
+    "mdd": 0.013360199110600048,
+    "mdd_start": "2024-07-19",
+    "mdd_end": "2024-08-05",
+    "calmar": 14.369148541441472,
+    "ir_vs_equal_weight": 2.840187601635482,
+    "bench_cum_return": -0.018879039788157526,
+    "bench_mdd": 0.0689524739157438,
+    "total_trades": 676,
+    "total_fee": 52952.47999999998,
+    "stop_loss_exits": 0,
+    "take_profit_exits": 0,
+    "final_cash_negative": false,
+    "price_basis": "close_unadjusted",
+    "price_adjusted": false,
+    "price_factor_jumps": 0,
+    "files_with_factor": 0
+  },
+  "checks": {
+    "nav_len_matches_dates": true,
+    "no_nan_in_nav": true,
+    "no_negative_equity": true,
+    "mdd_span_covers_trough": true,
+    "mdd_equals_recomputed": true,
+    "metrics_finite": true,
+    "trade_pairs_balanced": true,
+    "price_basis_declared": true
+  },
+  "per_stock_mean": {
+    "acc": 0.5584269662921347,
+    "cum_return": 0.06325121829293368,
+    "sharpe": 1.2454621521613936,
+    "mdd": 0.05766235620836164,
+    "trades": 13.52,
+    "total_fee": 1059.0495999999998
+  }
+}

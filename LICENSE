@@ -1,0 +1,38 @@
+MIT License
+
+Copyright (c) 2026 刘卓闻 (Liu Zhuowen)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Scope note / 适用范围说明
+
+This MIT license covers the application layer written for this project:
+app/, tests/, docs/, backtest/engine_cross_section.py, and the new scripts
+added on top of the upstream codebase.
+
+The CSMD dataset (CSMD50 / CSMD300) and the upstream LightQuant framework code
+are third-party works. Their use is governed by their original licenses and
+terms; if you use the dataset, cite the original CSMD / CIKM 2025 paper.
+
+本 MIT 许可覆盖本项目的应用层代码（app/、tests/、docs/、
+backtest/engine_cross_section.py 以及在上游代码基础上新增的脚本）。
+CSMD 数据集与上游 LightQuant 框架代码属第三方作品，其使用遵循原始授权；
+使用数据集请引用 CSMD / CIKM 2025 原论文。
