@@ -142,6 +142,12 @@ def normalize_params(raw):
         return None, "min_commission 不能为负，收到 %s" % mc
     p["min_commission"] = mc
 
+    if st == "timing":
+        # 择时回测引擎目前写死加载 test/price 全段，val 段会出零交易直线。
+        # 演示时不暴露 val 选项，后端也直接拒掉，避免现场点出尴尬画面。
+        if str(p.get("start", "2024-08-08")) < "2024-08-08":
+            return None, "择时回测仅支持样本外测试区间（2024-08-08 起），val 段请用截面策略"
+
     views = p.get("views") or []
     if not isinstance(views, list) or not views:
         return None, "views 必须是非空数组"
