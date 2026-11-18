@@ -1,0 +1,38 @@
+........................................................................ [ 59%]
+.................................................                        [100%]
+============================== warnings summary ===============================
+tests/test_api_auth.py::test_missing_authorization_is_401
+  D:\03_Study\GraduationProject\LightQuant\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.11.9-final-0 _______________
+
+Name                               Stmts   Miss  Cover   Missing
+----------------------------------------------------------------
+app\api.py                           649    461    29%   29, 47-55, 63-74, 84-95, 148-155, 180-187, 219, 238-242, 277-292, 305-349, 362-383, 450-457, 476-512, 519-524, 529-532, 540-545, 551-563, 568-576, 587-611, 617-659, 676-717, 731-734, 740-752, 760-797, 806-813, 819-837, 843-875, 881-882, 897-909, 924-950, 963-987, 1010-1032, 1041-1043, 1064-1069, 1075-1076, 1086-1103, 1108-1122, 1130-1146, 1153-1167, 1204-1245, 1258-1261
+app\auth.py                           60     11    82%   43-44, 49-54, 66, 88-89
+app\db.py                             61     19    69%   51, 69, 80, 102-105, 113-117, 128-151
+app\service_backtest.py              217    186    14%   26, 38-45, 93-217, 222-240, 249-251, 265-278, 282-289, 293-349, 354-355, 361-368, 380-417
+app\service_judge.py                 270    223    17%   44, 89, 93-112, 117-158, 168-171, 175-185, 190-209, 218-232, 236-250, 255-260, 269-295, 307-313, 318-350, 358-362, 367-376, 381, 389-429, 451-471, 484-489
+app\service_risk.py                  281    189    33%   31-44, 52, 55-56, 62-63, 68-75, 93, 102, 110-111, 113, 200-232, 245-278, 292-310, 323-373, 386-387, 396-402, 434-443, 452-499, 508-521
+backtest\backtest_multi.py            98     98     0%   1-144
+backtest\backtest_single.py          214    214     0%   1-316
+backtest\engine_cross_section.py     151      5    97%   86, 88, 129, 154, 260
+backtest\engine_v2.py                237     87    63%   34, 179, 195, 293-435, 442-465
+backtest\metrics.py                   54     54     0%   1-89
+backtest\run_backtest.py              39     39     0%   1-52
+backtest\run_backtest_fusion.py      201    201     0%   21-358
+backtest\run_backtest_v2.py           81     81     0%   15-156
+utils\__init__.py                      0      0   100%
+utils\gen_embeddings_cpu.py           77     77     0%   17-107
+utils\news_process.py                 71     71     0%   1-112
+utils\plot.py                         30     30     0%   1-44
+utils\price_dataloader.py            311    239    23%   81-89, 99-106, 114-118, 127-131, 143-153, 164-170, 179-192, 195, 198-200, 205-247, 250, 253, 260, 269-292, 296-315, 319-341, 344, 348-363, 371-391, 394-418, 421-428, 432-464, 467, 470, 475-528, 531, 534, 542-544, 547-553
+utils\price_news_dataloader.py       315    315     0%   1-485
+utils\test.py                         91     91     0%   1-159
+utils\util.py                        113    113     0%   1-176
+utils\word2vec.py                     58     58     0%   1-77
+----------------------------------------------------------------
+TOTAL                               3679   2862    22%

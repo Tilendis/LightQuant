@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "purpose": "发帖审核规则层评测标注集；LLM 层需配置 MODERATOR_PROVIDER 与 key 后离线复测",
+    "labels": {"APPROVED": "应通过", "BLOCKED": "应拦截"},
+    "categories": {
+      "normal": "正常行情讨论/技术分析/风险提示",
+      "keyword_violation": "含规则层硬性红线词（承诺收益/诱导加群/代客理财）",
+      "semantic_violation": "无规则词、语义上属违规推广，依赖 LLM 层识别",
+      "borderline": "边界擦边，规则层应放行，由 LLM 层复核"
+    }
+  },
+  "samples": [
+    {"id": 1, "category": "normal", "label": "APPROVED", "text": "万华化学今天放量下跌，从技术面看跌破了20日均线，先观察后续量能。"},
+    {"id": 2, "category": "normal", "label": "APPROVED", "text": "三一重工的估值处于近三年低位，基本面有改善迹象，但短期波动较大。"},
+    {"id": 3, "category": "normal", "label": "APPROVED", "text": "我个人认为中信证券后市偏震荡，以上仅为个人观点，不构成投资建议。"},
+    {"id": 4, "category": "normal", "label": "APPROVED", "text": "上汽集团今天主力资金净流出，结合半年报业绩，需要警惕中报风险。"},
+    {"id": 5, "category": "normal", "label": "APPROVED", "text": "历史收益不代表未来表现，市场有风险，入市需谨慎。"},
+    {"id": 6, "category": "normal", "label": "APPROVED", "text": "中国中免的社零数据边际回暖，消费板块可以跟踪，但不要追高。"},
+
+    {"id": 7, "category": "keyword_violation", "label": "BLOCKED", "text": "跟我操作保证收益，这只票稳赚不赔，下个月翻倍。"},
+    {"id": 8, "category": "keyword_violation", "label": "BLOCKED", "text": "想了解内幕消息的加微信，进群每天推送必涨牛股。"},
+    {"id": 9, "category": "keyword_violation", "label": "BLOCKED", "text": "专业团队代操盘，代管账户，代你下单，躺赚零风险。"},
+    {"id": 10, "category": "keyword_violation", "label": "BLOCKED", "text": "包赚不亏，100% 盈利，扫码进群领取荐股名单。"},
+    {"id": 11, "category": "keyword_violation", "label": "BLOCKED", "text": "私聊我带你建仓，联系方式在主页，稳赚。"},
+    {"id": 12, "category": "keyword_violation", "label": "BLOCKED", "text": "代客理财，代管账户，收益分成，必涨。"},
+
+    {"id": 13, "category": "semantic_violation", "label": "BLOCKED", "text": "名额只剩十个，有意向开户的联系我，专人一对一指导操作。"},
+    {"id": 14, "category": "semantic_violation", "label": "BLOCKED", "text": "我这边有内部渠道，想提高收益的可以找我安排席位。"},
+    {"id": 15, "category": "semantic_violation", "label": "BLOCKED", "text": "付费订阅我的实盘记录，跟着节奏走，胜率比自己瞎买高很多。"},
+    {"id": 16, "category": "semantic_violation", "label": "BLOCKED", "text": "需要操盘手帮忙盯盘的可以留言，我安排人对接。"},
+    {"id": 17, "category": "semantic_violation", "label": "BLOCKED", "text": "新用户开户返现，想开通两融权限的私信走我的链接。"},
+    {"id": 18, "category": "semantic_violation", "label": "BLOCKED", "text": "这套选股方法只卖给老粉，想要的评论区扣1，我发你购买方式。"},
+
+    {"id": 19, "category": "borderline", "label": "APPROVED", "text": "我最近在研究几只低位股，逻辑写在长文里，大家自行判断。"},
+    {"id": 20, "category": "borderline", "label": "APPROVED", "text": "如果大盘站稳3000点，消费板块可能有轮动机会，仅供参考。"},
+    {"id": 21, "category": "borderline", "label": "APPROVED", "text": "这只票我自己持有，成本价在这，不代表推荐买卖。"},
+    {"id": 22, "category": "borderline", "label": "APPROVED", "text": "龙虎榜显示游资进场，短期情绪偏热，注意回撤风险。"},
+    {"id": 23, "category": "borderline", "label": "APPROVED", "text": "估值分位处于历史低位区间，是否买入还需结合个人风险承受能力。"},
+    {"id": 24, "category": "borderline", "label": "APPROVED", "text": "财报季关注现金流和负债变化，不要只看净利润。"}
+  ]
+}

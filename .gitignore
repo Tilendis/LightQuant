@@ -66,6 +66,8 @@ screenshots/
 
 # Python 测试缓存
 .pytest_cache/
+.coverage
+htmlcov/
 
 # 回测交易明细（可复跑，不进库；summary.json 保留）
 backtest/result_v2/**/trades.csv
