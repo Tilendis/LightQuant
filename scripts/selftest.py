@@ -353,7 +353,7 @@ def main():
     code, _ = call(base, "POST", "/api/backtest/tasks", token=auth_,
                    body={"start": "2024-08-08", "end": "2024-12-31",
                          "views": ["fusion"], "method": "vote",
-                         "fusion_version": "fusion-test-3view"})
+                         "fusion_version": "fusion-test-3view-v2"})
     expect("投票配加权表 → 400", code, 400)
 
     code, _ = call(base, "GET", "/api/dashboard/activity", token=inv)
@@ -388,7 +388,7 @@ def main():
                    body={"symbol": SYMBOL, "date": "2024-12-02", "write": False})
     expect("投资者触发研判调度 → 403", code, 403)
 
-    code, _ = call(base, "DELETE", "/api/judgements/run/fusion-test-3view", token=auth_)
+    code, _ = call(base, "DELETE", "/api/judgements/run/fusion-test-3view-v2", token=auth_)
     expect("删除主口径版本 → 400（只允许删 rerun-*）", code, 400)
 
     # 批量研判：多只股 × 多个交易日，全程共用一个 rerun 版本

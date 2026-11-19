@@ -13,7 +13,7 @@
 
 三个必须说清的边界
 ------------------
-1. **写独立 prompt_version**（`rerun-<时间戳>`），不覆盖主口径 `fusion-test-3view`。
+1. **写独立 prompt_version**（`rerun-<时间戳>`），不覆盖主口径 `fusion-test-3view-v2`。
    演示随便跑，跑完整批可删（`db_cleanup(conn, pv)`）。
 2. **截面去均值需要横截面**。`fuse_views` 对 fund / sent 做按日截面去均值，是为了
    去掉"情绪面整体偏乐观"这类底噪（实测 50 条里 32 条 BUY、均分 +0.46）。只调
@@ -377,7 +377,7 @@ def _part(view, status, score=None, signal=None, reason=None, provider=None,
 
 
 def new_version(prefix="rerun"):
-    """生成独立版本号。演示随便跑，不碰主口径 fusion-test-3view。"""
+    """生成独立版本号。演示随便跑，不碰主口径 fusion-test-3view-v2。"""
     return "%s-%s" % (prefix, time.strftime("%Y%m%d%H%M%S"))
 
 
@@ -437,7 +437,7 @@ def run(conn, symbol, date, allow_llm=True, write=True, prompt_version=None):
         "fusion": fusion,
         "demean": demean_info,
         "elapsed_ms": int((time.time() - t_all) * 1000),
-        "note": ("三视角调度完成；结果写在独立版本 %s，不影响主口径 fusion-test-3view。"
+        "note": ("三视角调度完成；结果写在独立版本 %s，不影响主口径 fusion-test-3view-v2。"
                  % pv) if write else "只计算未写库",
     }
 

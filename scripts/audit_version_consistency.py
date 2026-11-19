@@ -99,8 +99,13 @@ def check_inventory(conn):
 
 
 # ------------------------------------------------------------ B 融合表复现
-def reproduce_fusion(conn, start, end, weights, versions):
-    """按 fuse_views.main 的口径复算分数矩阵，返回 (fscore_df, meta)。"""
+def reproduce_fusion(conn, start, end, weights, versions, method="weighted",
+                     threshold=0.2):
+    """按 fuse_views.main 的口径复算分数矩阵，返回 (fscore_df, meta)。
+
+    method=weighted 走加权+可用权重归一化；method=vote 走多数决（need=len//2+1），
+    两者都必须与 fuse_views.py 逐行同口径，否则审计会给出假结论。
+    """
     mats = {}
     for v in F.VIEWS:
         mats[v] = F.load_matrix(conn, v, start, end, versions[v])
@@ -137,17 +142,29 @@ def reproduce_fusion(conn, start, end, weights, versions):
                     avail[v] = float(s)
             if not avail:
                 continue
-            ws = sum(weights[F.VIEWS.index(v)] for v in avail)
-            if ws <= 0:
-                continue
-            fscore = sum(weights[F.VIEWS.index(v)] * s for v, s in avail.items()) / ws
+            if method == "weighted":
+                ws = sum(weights[F.VIEWS.index(v)] for v in avail)
+                if ws <= 0:
+                    continue
+                fscore = sum(weights[F.VIEWS.index(v)] * s for v, s in avail.items()) / ws
+            else:
+                sigs = [F.to_signal(s, threshold) for s in avail.values()]
+                buys, sells = sigs.count("BUY"), sigs.count("SELL")
+                need = len(avail) // 2 + 1
+                if buys >= need:
+                    fscore = float(max(avail.values()))
+                elif sells >= need:
+                    fscore = float(min(avail.values()))
+                else:
+                    fscore = 0.0
             out.loc[date, sym] = max(-1.0, min(1.0, fscore))
     return out, dict(days=len(idx), stocks=len(cols),
                      filled={v: int(mats[v].notna().sum().sum()) for v in F.VIEWS})
 
 
-def check_fusion(conn, pv, weights, versions):
-    print("\n[B] 融合表复现：%s（权重 %s）" % (pv, "/".join("%.2f" % w for w in weights)))
+def check_fusion(conn, pv, weights, versions, method="weighted", threshold=0.2):
+    print("\n[B] 融合表复现：%s（%s，权重 %s，阈值 %.2f）" % (
+        pv, method, "/".join("%.2f" % w for w in weights), threshold))
     q = conn.execute(
         """SELECT MIN(date) d0, MAX(date) d1, COUNT(*) n
            FROM judgements WHERE view='fusion' AND prompt_version=?""", (pv,)).fetchone()
@@ -158,7 +175,8 @@ def check_fusion(conn, pv, weights, versions):
 
     start, end = q["d0"], q["d1"]
     try:
-        recomputed, meta = reproduce_fusion(conn, start, end, weights, versions)
+        recomputed, meta = reproduce_fusion(conn, start, end, weights, versions,
+                                            method=method, threshold=threshold)
     except RuntimeError as e:
         note("block", "B", str(e))
         print("  跳过：%s" % e)
@@ -412,6 +430,81 @@ def check_docs(conn):
     return dict(flagged=len(flagged), bannered=len(bannered), exempt=exempt)
 
 
+def check_app_refs():
+    """[F] 应用层是否还在字符串字面量里引用已被取代的融合版本。
+
+    注释、文档串、PV_SHORT 这类"展示映射"不算引用；真正生效的只有引号包裹的
+    字面量（默认值、白名单、下拉框 option、派生 return）。
+    """
+    print("\n[F] 应用层版本引用（字符串字面量）")
+    files = ["app/api.py", "app/service_backtest.py", "app/service_judge.py",
+             "app/static/index.html", "app/static/app.js", "scripts/selftest.py"]
+    lit = re.compile(r"""(['"])fusion-test-3view\1""")
+    map_key = re.compile(r"""(['"])fusion-test-3view\1\s*:""")   # 展示映射键，允许
+    bad = 0
+    for rel in files:
+        path = os.path.join(ROOT, rel)
+        if not os.path.exists(path):
+            note("block", "F", "缺文件 %s" % rel)
+            continue
+        with open(path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        hits = []
+        for i, line in enumerate(lines, 1):
+            if not lit.search(line) or map_key.search(line):
+                continue
+            hits.append((i, line.strip()[:110]))
+        if hits:
+            bad += len(hits)
+            for i, text in hits:
+                note("fail", "F", "%s:%d 仍指向旧版本：%s" % (rel, i, text))
+                print("  !!  %s:%d  %s" % (rel, i, text))
+        else:
+            print("  ok  %-32s 无旧版本字面量" % rel)
+    if not bad:
+        note("ok", "F", "应用层已全部指向 fusion-test-3view-v2")
+    return dict(offending=bad)
+
+
+def check_strategies(conn, main_version, main_dir):
+    """[G] strategies 表指标必须能追到回测目录，主口径策略必须与 summary 一致。"""
+    print("\n[G] 策略表指标对账")
+    rows = pd.read_sql_query("SELECT id, name, params_json, metrics_json FROM strategies", conn)
+    out = []
+    for _, r in rows.iterrows():
+        pj = json.loads(r["params_json"] or "{}")
+        mj = json.loads(r["metrics_json"] or "{}")
+        pv = pj.get("fusion_version")
+        item = dict(id=int(r["id"]), name=r["name"], version=pv,
+                    cum=mj.get("cum_return"), sharpe=mj.get("sharpe"),
+                    mdd=mj.get("mdd"), trades=mj.get("trades"))
+        if pv == main_version:
+            sp = os.path.join(ROOT, "backtest", "result_v2", main_dir, "summary.json")
+            if not os.path.exists(sp):
+                note("fail", "G", "策略 #%s 指向主口径但缺 %s" % (r["id"], main_dir))
+                out.append(item)
+                continue
+            with open(sp, "r", encoding="utf-8-sig") as f:
+                p = json.load(f)["portfolio"]
+            checks = [("cum_return", p.get("cum_return")),
+                      ("sharpe", p.get("sharpe")),
+                      ("mdd", p.get("mdd")),
+                      ("trades", p.get("total_trades"))]
+            diffs = [(k, mj.get(k), v) for k, v in checks
+                     if v is not None and (mj.get(k) is None or abs(float(mj.get(k)) - float(v)) > 1e-4)]
+            if diffs:
+                note("fail", "G", "策略 #%s 指标与 %s 不一致：%s" % (r["id"], main_dir, diffs))
+                print("  !!  #%s %s 与 summary 不一致：%s" % (r["id"], r["name"], diffs))
+            else:
+                print("  ok  #%s %-34s 主口径一致 cum=%.4f sharpe=%.3f trades=%s" % (
+                    r["id"], r["name"], p["cum_return"], p["sharpe"], p["total_trades"])
+                )
+        else:
+            print("  ~   #%s %-34s 版本=%s（非主口径，仅作历史对照）" % (r["id"], r["name"], pv))
+        out.append(item)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default=None)
@@ -422,6 +515,12 @@ def main():
     ap.add_argument("--fund_version", default=VERSIONS["fund"])
     ap.add_argument("--sent_version", default=VERSIONS["sent"])
     ap.add_argument("--json", default=None, help="把审计结果另存为 JSON")
+    ap.add_argument("--method", default="weighted", choices=["weighted", "vote"],
+                    help="复现用的融合方式，须与目标版本的生成方式一致")
+    ap.add_argument("--threshold", type=float, default=0.2,
+                    help="vote 模式下的方向阈值")
+    ap.add_argument("--main_dir", default="test_fusion_3view_v2",
+                    help="主口径回测产物目录名（用于策略表指标对账）")
     args = ap.parse_args()
 
     weights = [float(x) for x in args.weights.split(",")]
@@ -438,9 +537,13 @@ def main():
     payload = {}
     try:
         check_inventory(conn)
-        payload["fusion"] = check_fusion(conn, args.fusion_version, weights, versions)
+        payload["fusion"] = check_fusion(conn, args.fusion_version, weights, versions,
+                                         method=args.method, threshold=args.threshold)
         payload["backtests"] = check_backtests(conn)
         payload["accuracy"] = check_accuracy(conn)
+        payload["app_refs"] = check_app_refs()
+        payload["strategies"] = check_strategies(
+            conn, args.fusion_version, args.main_dir)
         payload["docs"] = check_docs(conn)
     finally:
         conn.close()

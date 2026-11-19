@@ -353,7 +353,7 @@
     // fusion 在库里有九个版本并存，不指定版本会混排并截断日期轴。
     // auto 的语义是"按后端 PV_PREF 的优先级逐日取版本"，对应后端那套三段链：
     //   2024-12-16~12-31  fusion-agent-v1（三智能体链路）
-    //   2024-08-08~12-31  fusion-test-3view（测试段标定 0.90/0.00/0.10）
+    //   2024-08-08~12-31  fusion-test-3view-v2（测试段标定 0.90/0.00/0.10）
     //   2024-03-15~08-07  fusion-val-3view（验证段标定 同上）
     // 技术面/基本面/情绪面是两段：智能体版 12 天优先，更早落回 tech-v1 / fund-rule-v1 / sent-v1。
     var VER = { tech: 'auto', fund: 'auto', sent: 'auto', fusion: 'auto' };
@@ -999,7 +999,8 @@
   // 策略表的口径列：库里五个策略来自不同权重版本，指标不可横比。
   // 不把版本写出来，"加权 15.97% vs 加权 16.88%"看起来像同一方法跑出两个数。
   var PV_SHORT = {
-    'fusion-test-3view': '标定 0.9/0/0.1（样本外）',
+    'fusion-test-3view-v2': '标定 0.9/0/0.1（样本外·主口径）',
+    'fusion-test-3view': '标定 0.9/0/0.1（样本外·旧口径）',
     'fusion-val-3view': '标定 0.9/0/0.1（样本内）',
     'fusion-agent-v1': '三智能体链路 tech1.0/sent0.5',
     'fusion-vote-v1': '投票（多数决）',
@@ -1794,7 +1795,7 @@
     function btVerDerive() {
       if (el('btMethod').value === 'vote') { return 'fusion-vote-v1'; }
       var s = el('btStart').value || '';
-      return (s && s < '2024-08-08') ? 'fusion-val-3view' : 'fusion-test-3view';
+      return (s && s < '2024-08-08') ? 'fusion-val-3view' : 'fusion-test-3view-v2';
     }
 
     function syncBtVer() {

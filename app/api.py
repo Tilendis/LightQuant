@@ -249,10 +249,11 @@ def list_stocks(conn=Depends(get_conn), user=Depends(get_user)):
 # 该日没有就回退基线版，否则 K 线与研判页会在 12 月前面突然断档。
 #
 # fusion 有三段，且必须"输入与权重同源"，不能跨段混用：
-#   fusion-agent-v1     12-16~12-31  输入是 LLM 三视角，权重绑该链路（tech1.0/sent0.5）
-#   fusion-test-3view   08-08~12-31  基线三视角 + 验证集标定权重 0.90/0.00/0.10
-#   fusion-val-3view    03-15~08-07  同上，标定与回测都在 val 段
+#   fusion-agent-v1        12-16~12-31  输入是 LLM 三视角，权重绑该链路（tech1.0/sent0.5）
+#   fusion-test-3view-v2   08-08~12-31  基线三视角 + 验证集标定权重 0.90/0.00/0.10（修复后 tech）
+#   fusion-val-3view       03-15~08-07  同上，标定与回测都在 val 段
 # 历史遗留的 fusion-val-v1(tech=1.0) / fusion-v1(0.5/0.25/0.25) / fusion-vote-v1
+# 以及被 v2 取代的 fusion-test-3view（12 月段 tech 为修复前数据）
 # 只留在回测结果目录里做对照证据，不再进线上链路，避免界面展示与论证口径不一致。
 PV_PREF = {
     "tech": ("tech-agent-v1", "tech-v1"),
@@ -261,7 +262,7 @@ PV_PREF = {
     # 更早日期按顺序回退 fund-agent-v1、fund-rule-v1，不会断档。
     "fund": ("fund-agent-v3", "fund-agent-v1", "fund-rule-v1"),
     "sent": ("sent-agent-v1", "sent-v1"),
-    "fusion": ("fusion-agent-v1", "fusion-test-3view", "fusion-val-3view"),
+    "fusion": ("fusion-agent-v1", "fusion-test-3view-v2", "fusion-val-3view"),
 }
 
 # 编排层与主融合表在库里同为 view='fusion'，只能靠 prompt_version 区分，
@@ -471,7 +472,7 @@ def run_judgements(payload: dict = Body(...),
          或 {\"symbols\":[\"万华化学\"],\"date_start\":\"2024-12-29\",\"date_end\":\"2024-12-31\"}
     批量上限 50 个组合，全程共用一个 rerun 版本，演示完一键 cleanup。
 
-    结果写独立版本 rerun-<时间戳>，不覆盖主口径 fusion-test-3view；
+    结果写独立版本 rerun-<时间戳>，不覆盖主口径 fusion-test-3view-v2；
     传 write=false 则只算不写，用于彩排。
     """
     need(user, "author", "operator")

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19 17:45:11",
+  "generated_at": "2026-11-19 17:50:53",
   "main_fusion": "fusion-test-3view-v2",
   "weights": [
     0.9,
@@ -36,6 +36,11 @@
       "level": "ok",
       "section": "B",
       "message": "fusion-test-3view-v2 与当前上游逐格一致"
+    },
+    {
+      "level": "ok",
+      "section": "F",
+      "message": "应用层已全部指向 fusion-test-3view-v2"
     },
     {
       "level": "ok",
@@ -645,6 +650,65 @@
         "match": true
       }
     },
+    "app_refs": {
+      "offending": 0
+    },
+    "strategies": [
+      {
+        "id": 1,
+        "name": "技术面强信号策略 v1",
+        "version": null,
+        "cum": 0.14145401166156746,
+        "sharpe": 3.445794729709783,
+        "mdd": 0.03508420142766654,
+        "trades": null
+      },
+      {
+        "id": 2,
+        "name": "融合投票策略 v1",
+        "version": "fusion-vote-v1",
+        "cum": 0.21067612239315614,
+        "sharpe": 2.2969544683748677,
+        "mdd": 0.06604209009077751,
+        "trades": null
+      },
+      {
+        "id": 3,
+        "name": "融合加权策略 v2",
+        "version": "fusion-v1",
+        "cum": 0.16880007732133806,
+        "sharpe": 2.8502047521413956,
+        "mdd": 0.03132793003589347,
+        "trades": null
+      },
+      {
+        "id": 4,
+        "name": "融合投票止盈策略 v1",
+        "version": "fusion-vote-v1",
+        "cum": 0.11890850772357675,
+        "sharpe": 2.026542432641048,
+        "mdd": 0.05223135777892026,
+        "trades": null
+      },
+      {
+        "id": 7,
+        "name": "融合加权策略 v3（验证集标定 0.9/0/0.1）",
+        "version": "fusion-test-3view-v2",
+        "cum": 0.07897037510277993,
+        "sharpe": 2.2355982392544975,
+        "mdd": 0.027840179401691357,
+        "trades": 616
+      },
+      {
+        "id": 8,
+        "name": "截面选股策略 v1（技术面 TOP10 五日轮动）",
+        "version": null,
+        "cum": 0.5380339805135195,
+        "sharpe": 3.6760087615773593,
+        "mdd": 0.052928676198059334,
+        "trades": null
+      }
+    ],
     "docs": {
       "flagged": 0,
       "bannered": 14,

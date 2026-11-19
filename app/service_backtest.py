@@ -48,7 +48,8 @@ def _load_fusion():
 # 允许显式指定的融合版本。只放覆盖完整 test 段（08-08 起）或完整 val 段（03-15 起）的表。
 # 12 月那批 agent 版（fusion-agent-v1 / fusion-orch-* 等）只有 600 行、12-16 起，
 # 从 08-08 跨段回测会取不全，却照样"跑成功"并给出半截结果，所以不放进来。
-FUSION_VERSIONS = ("fusion-test-3view", "fusion-vote-v1", "fusion-v1",
+# fusion-test-3view 不放进来：它是 12 月段 tech 为修复前数据的旧口径，已被 v2 取代。
+FUSION_VERSIONS = ("fusion-test-3view-v2", "fusion-vote-v1", "fusion-v1",
                    "fusion-val-3view", "fusion-val-v1")
 
 
@@ -190,7 +191,7 @@ def normalize_params(raw):
     #
     # 加权版的默认值按回测起点选段，不能统一写 fusion-val-v1：
     #   03-15~08-07 → fusion-val-3view（标定与回测同段，属样本内）
-    #   08-08~12-31 → fusion-test-3view（真样本外）
+    #   08-08~12-31 → fusion-test-3view-v2（真样本外，12 月段 tech 已修复）
     # 两者都是 0.90/0.00/0.10。fusion-val-v1（tech=1.0）是旧标定，只作对照保留。
     # 跨段回测必须显式传 fusion_version，否则只会取到起点所在那一段。
     if "fusion" in views:
@@ -211,7 +212,7 @@ def normalize_params(raw):
         else:
             p["fusion_version"] = ("fusion-val-3view"
                                    if str(p.get("start") or "") < "2024-08-08"
-                                   else "fusion-test-3view")
+                                   else "fusion-test-3view-v2")
     else:
         p["fusion_version"] = None
     return p, None
