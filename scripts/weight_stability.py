@@ -12,15 +12,20 @@ conn.row_factory = sqlite3.Row
 
 VAL_START, VAL_END = "2024-03-15", "2024-08-08"
 
+# 锁定 val 段主口径版本，避免多版本重复计入覆盖同一单元格
+VAL_VER = {"tech": "tech-v1", "fund": "fund-rule-v1", "sent": "sent-v1"}
+
 def load_panel(start, end):
     rows = conn.execute("""
-        SELECT j.view, j.symbol, j.date, j.score, p.label
+        SELECT j.view, j.symbol, j.date, j.score, j.prompt_version, p.label
         FROM judgements j
         JOIN prices p ON p.symbol=j.symbol AND p.date=j.date
         WHERE j.date >= ? AND j.date < ?
     """, (start, end)).fetchall()
     panel = {}
     for r in rows:
+        if VAL_VER.get(r["view"]) != r["prompt_version"]:
+            continue
         key = (r["date"], r["symbol"])
         panel.setdefault(key, {})[r["view"]] = r["score"]
         panel[key]["label"] = r["label"]

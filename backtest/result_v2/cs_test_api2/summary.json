@@ -1,0 +1,189 @@
+{
+  "tag": "cs_test_api2",
+  "config": {
+    "top_n": 10,
+    "hold_days": 5,
+    "initial_cash": 100000.0,
+    "commission_rate": 0.0003,
+    "min_commission": 5.0,
+    "stamp_duty_rate": 0.001,
+    "slippage_rate": 0.002,
+    "lot_size": 1,
+    "rf_annual": 0.02,
+    "views": [
+      "tech"
+    ],
+    "method": "cross_section",
+    "score_th": 0.0,
+    "prompt_version": "tech-v1"
+  },
+  "portfolio": {
+    "stocks": 50,
+    "bars": 97,
+    "first_date": "2024-08-08",
+    "last_date": "2024-12-31",
+    "cum_return": 0.5380339805135195,
+    "arr": 2.0958903319507804,
+    "sharpe": 3.6760087615773593,
+    "mdd": 0.052928676198059334,
+    "mdd_start": "2024-11-07",
+    "mdd_end": "2024-11-25",
+    "calmar": 39.59838942708391,
+    "ir_vs_equal_weight": 4.2913153127302355,
+    "bench_cum_return": 0.14627226043874964,
+    "bench_mdd": 0.13304762607716847,
+    "total_trades": 370,
+    "total_fee": 4280.74,
+    "stop_loss_exits": 0,
+    "take_profit_exits": 0,
+    "final_cash_negative": false,
+    "price_basis": "close_unadjusted",
+    "price_adjusted": false,
+    "price_factor_jumps": 0,
+    "files_with_factor": 0,
+    "strategy_type": "cross_section",
+    "top_n": 10,
+    "hold_days": 5,
+    "rebalance_count": 19,
+    "robustness": {
+      "period_count": 19,
+      "cum_all": 0.5122454144766915,
+      "cum_drop_best_1": 0.1654173272554622,
+      "cum_drop_best_2": 0.08762467872623558,
+      "cum_drop_best_3": 0.04966429614823542,
+      "best_period": 0.2975999061537924
+    }
+  },
+  "checks": {
+    "nav_len_matches_dates": true,
+    "no_nan_in_nav": true,
+    "no_negative_equity": true,
+    "mdd_span_covers_trough": true,
+    "mdd_equals_recomputed": true,
+    "metrics_finite": true,
+    "rebalance_executed": true,
+    "price_basis_declared": true
+  },
+  "per_stock_mean": {
+    "acc": 0.627,
+    "cum_return": 0.10060185824150703,
+    "trades": 3.8,
+    "total_fee": 19.0
+  },
+  "rebalance_log": [
+    {
+      "date": "2024-08-15",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10000.0
+    },
+    {
+      "date": "2024-08-22",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10166.88
+    },
+    {
+      "date": "2024-08-29",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10143.75
+    },
+    {
+      "date": "2024-09-05",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10448.8
+    },
+    {
+      "date": "2024-09-12",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10079.93
+    },
+    {
+      "date": "2024-09-23",
+      "bought": 10,
+      "pool": 10,
+      "budget": 10227.07
+    },
+    {
+      "date": "2024-09-30",
+      "bought": 10,
+      "pool": 10,
+      "budget": 12660.19
+    },
+    {
+      "date": "2024-10-14",
+      "bought": 10,
+      "pool": 10,
+      "budget": 13930.93
+    },
+    {
+      "date": "2024-10-21",
+      "bought": 10,
+      "pool": 10,
+      "budget": 14853.13
+    },
+    {
+      "date": "2024-10-28",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15068.15
+    },
+    {
+      "date": "2024-11-04",
+      "bought": 10,
+      "pool": 10,
+      "budget": 14768.08
+    },
+    {
+      "date": "2024-11-11",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15170.84
+    },
+    {
+      "date": "2024-11-18",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15187.94
+    },
+    {
+      "date": "2024-11-25",
+      "bought": 10,
+      "pool": 10,
+      "budget": 14688.79
+    },
+    {
+      "date": "2024-12-02",
+      "bought": 10,
+      "pool": 10,
+      "budget": 14693.26
+    },
+    {
+      "date": "2024-12-09",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15103.41
+    },
+    {
+      "date": "2024-12-16",
+      "bought": 10,
+      "pool": 10,
+      "budget": 14949.75
+    },
+    {
+      "date": "2024-12-23",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15139.57
+    },
+    {
+      "date": "2024-12-30",
+      "bought": 10,
+      "pool": 10,
+      "budget": 15492.96
+    }
+  ]
+}

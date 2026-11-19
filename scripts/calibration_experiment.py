@@ -14,13 +14,19 @@ conn.row_factory = sqlite3.Row
 
 VAL_END = "2024-08-08"
 
-def load(view, start, end):
+# 主口径版本：val 段与 test 段 fusion 版本名不同，分别锁定
+VAL_VER = {"tech": "tech-v1", "fund": "fund-rule-v1",
+           "sent": "sent-v1", "fusion": "fusion-val-3view"}
+TEST_VER = {"tech": "tech-v1", "fund": "fund-rule-v1",
+            "sent": "sent-v1", "fusion": "fusion-test-3view"}
+
+def load(view, start, end, version):
     rows = conn.execute("""
         SELECT j.score, p.label
         FROM judgements j
         JOIN prices p ON p.symbol=j.symbol AND p.date=j.date
-        WHERE j.view=? AND j.date>=? AND j.date<?
-    """, (view, start, end)).fetchall()
+        WHERE j.view=? AND j.prompt_version=? AND j.date>=? AND j.date<?
+    """, (view, version, start, end)).fetchall()
     scores = np.array([r["score"] for r in rows], dtype=float)
     labels = np.array([r["label"] for r in rows], dtype=float)
     return scores, labels
@@ -53,8 +59,8 @@ def bin_table(prob, labels):
     return out
 
 for view in ["tech", "fund", "sent", "fusion"]:
-    v_s, v_y = load(view, "2024-03-15", VAL_END)
-    t_s, t_y = load(view, VAL_END, "2024-12-31")
+    v_s, v_y = load(view, "2024-03-15", VAL_END, VAL_VER[view])
+    t_s, t_y = load(view, VAL_END, "2024-12-31", TEST_VER[view])
     if len(v_s) < 50 or len(t_s) < 50:
         print(f"\n{view}: 样本不足，跳过")
         continue
