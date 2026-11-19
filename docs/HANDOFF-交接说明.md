@@ -137,7 +137,15 @@
 
 ## 7. 未决 / 待办
 
+- **随时可跑的口径自查**：`.venv\Scripts\python.exe scripts\audit_version_consistency.py`
+  五项检查（版本清单 / 融合表逐格复现 / 70 个回测目录自洽 / 看板四视角 ACC 对账 / 文档旧数字扫描）。
+  当前状态：test 段 `fusion-test-3view-v2` 4746 格 **0 格不一致**，val 段 `fusion-val-3view` 4676 格 **0 格不一致**，
+  四视角 ACC 与 `view_accuracy.json` 逐位一致，70 个回测目录 0 问题。加 `--json docs/audit_consistency.json` 存报告；
+  换 `--fusion_version fusion-val-3view` 可单独复核验证段。**任何数字改动后应先跑这一条，再改文档。**
 - 论文正文、实验章节挂表、答辩 PPT 未做；素材已在 `docs\消融与改进实验记录.md` 与 `docs\第5章实验数据表.md`。
+- LLM 审核层串联评测：需配 `MODERATOR_PROVIDER` + 对应 key（密钥放 `%USERPROFILE%\.lightquant\secrets.env`，不入库）。
+- 可选补强（工时允许再做）：engine_v2 止损/止盈/跳空/T+1 分支补单测；db 边界分支补测。
+- 已知不修（Gemini 判为投入产出比不划算）：择时引擎同日收盘成交的乐观偏差（论文注明假设即可，截面引擎已是 T-1→T 开盘对照）；TOCTOU 双击、懒加载未加锁（单机演示低危）；四个回测查询接口全角色公开读（业务上投资者需看历史报告）。
 - LLM 审核层串联评测：需配 `MODERATOR_PROVIDER` + 对应 key（密钥放 `%USERPROFILE%\.lightquant\secrets.env`，不入库）。
 - 可选补强（工时允许再做）：engine_v2 止损/止盈/跳空/T+1 分支补单测；db 边界分支补测。
 - 已知不修（Gemini 判为投入产出比不划算）：择时引擎同日收盘成交的乐观偏差（论文注明假设即可，截面引擎已是 T-1→T 开盘对照）；TOCTOU 双击、懒加载未加锁（单机演示低危）；四个回测查询接口全角色公开读（业务上投资者需看历史报告）。
