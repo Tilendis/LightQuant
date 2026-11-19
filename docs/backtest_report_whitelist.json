@@ -1,0 +1,42 @@
+{
+  "note": "网页「已有结果」下拉的白名单。只影响界面展示，磁盘文件与文档引证路径不变；临时查看全部结果用 /api/backtest/reports?all=1。",
+  "groups": [
+    {
+      "name": "论文核心",
+      "tags": [
+        "test_fusion_3view",
+        "test_fusion_3view_v2",
+        "val_fusion_3view",
+        "cs_test_test",
+        "base_alstm_w5",
+        "base_bilstm_w5",
+        "feat_alstm_w5",
+        "feat_bilstm_w5",
+        "ab_tech",
+        "ab_tech_fund",
+        "ab_tech_sent",
+        "ab_tech_th0",
+        "ab_fusion",
+        "ab_fusion_vote",
+        "w0.8_0.1_0.1",
+        "w0.6_0.2_0.2",
+        "w0.4_0.3_0.3",
+        "w0.33_0.33_0.33",
+        "w0.2_0.4_0.4"
+      ]
+    },
+    {
+      "name": "基本面质量因子（2026-11-19）",
+      "tags": [
+        "test_pool_quality50",
+        "test_pool_quality50_v2",
+        "test_pool_value50",
+        "test_pool_value50_v2",
+        "val_pool_quality50",
+        "test_tech_postfix",
+        "test_fusion_decay3",
+        "test_fusion_decay10"
+      ]
+    }
+  ]
+}

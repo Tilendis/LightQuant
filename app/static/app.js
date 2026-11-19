@@ -689,16 +689,26 @@
   /* ---------------- 图 2：净值 + 买卖点 + 回撤阴影 ---------------- */
 
   function loadBacktestPanel() {
-    api('/api/backtest/tasks?limit=50').then(function (tasks) {
+    /* 先把磁盘结果拿到手：白名单之外的历史调参/联调目录由服务端列为 hidden_tags，
+       任务表里同名的旧任务也要一并藏起来，否则下拉又被历史 tag 灌满。
+       新提交的回测 tag 不在 hidden_tags 中，提交后照样能看到。 */
+    Promise.all([
+      api('/api/backtest/reports'),
+      api('/api/backtest/tasks?limit=50')
+    ]).then(function (res) {
+      var rep = res[0] || {};
+      var tasks = res[1] || [];
       var sel = el('tagSel');
       var tsel = el('taskSel');
       sel.innerHTML = '';
       tsel.innerHTML = '';
+      var hidden = {};
+      ((rep.hidden_tags) || []).forEach(function (t) { hidden[t] = 1; });
       // 同一个 tag 可能被提交过多次（如 api_warm 跑了两遍），下拉里只留一个
       var seenTag = {};
       tasks.forEach(function (t) {
         var tag = (t.params && t.params.tag) || '';
-        if (tag && !seenTag[tag]) {
+        if (tag && !seenTag[tag] && !hidden[tag]) {
           seenTag[tag] = 1;
           var o = document.createElement('option');
           o.value = tag;
@@ -713,39 +723,34 @@
         }
       });
 
-      /* 合并磁盘结果：命令行跑的回测（如验证集标定后的 api_f_val）不写任务表，
-         只靠 tasks 填充会让演示时选不到新结果。 */
-      return api('/api/backtest/reports').then(function (rep) {
-        var have = {};
-        for (var k = 0; k < sel.options.length; k++) { have[sel.options[k].value] = 1; }
-        ((rep || {}).reports || []).forEach(function (r) {
-          if (!r.tag || have[r.tag]) return;
-          var o = document.createElement('option');
-          o.value = r.tag;
-          // 区分"融合表"和"单视角表"：两者读数来源不同，混着标会让口径失真
-          var suffix = '磁盘结果';
-          if (r.views && r.views.length) {
-            suffix = (r.views.indexOf('fusion') >= 0
-              ? '融合 · ' + (r.fusion_version || '版本未记录')
-              : '单视角 · ' + r.views.join('+'));
-          }
-          o.textContent = r.tag + '（' + suffix + '）';
-          sel.insertBefore(o, sel.firstChild);
-          have[r.tag] = 1;
-        });
-        finish();
-      }).catch(function () { finish(); });
-
-      function finish() {
-        if (sel.options.length) {
-          var def = null;
-          for (var i = 0; i < sel.options.length; i++) {
-            if (sel.options[i].value === 'api_f_val') { def = 'api_f_val'; break; }
-          }
-          sel.value = def || sel.options[0].value;
+      /* 合并磁盘结果：命令行跑的回测不写任务表，只靠 tasks 填充会让演示时选不到新结果。 */
+      var have = {};
+      for (var k = 0; k < sel.options.length; k++) { have[sel.options[k].value] = 1; }
+      ((rep.reports) || []).forEach(function (r) {
+        if (!r.tag || have[r.tag]) return;
+        var o = document.createElement('option');
+        o.value = r.tag;
+        // 区分"融合表"和"单视角表"：两者读数来源不同，混着标会让口径失真
+        var suffix = '磁盘结果';
+        if (r.views && r.views.length) {
+          suffix = (r.views.indexOf('fusion') >= 0
+            ? '融合 · ' + (r.fusion_version || '版本未记录')
+            : '单视角 · ' + r.views.join('+'));
         }
-        if (sel.value && !state.charts['chart2']) loadReport(sel.value);
+        o.textContent = r.tag + '（' + suffix + '）';
+        sel.insertBefore(o, sel.firstChild);
+        have[r.tag] = 1;
+      });
+
+      // 默认落在主口径，而不是随手一个历史 tag：张口就错的口径比列表乱更致命
+      if (sel.options.length) {
+        var def = null;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === 'test_fusion_3view_v2') { def = sel.options[i].value; break; }
+        }
+        sel.value = def || sel.options[0].value;
       }
+      if (sel.value && !state.charts['chart2']) loadReport(sel.value);
     }).catch(function (e) {
       hint('btHint', '任务列表读取失败：' + e.message, 'bad');
     });

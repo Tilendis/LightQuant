@@ -14,6 +14,7 @@
 
 import csv
 import json
+import math
 import os
 import sys
 import threading
@@ -576,20 +577,71 @@ def get_task(task_id: int, conn=Depends(get_conn), user=Depends(get_user)):
     return d
 
 
+REPORT_WHITELIST_FILE = os.path.join(PROJECT_ROOT, "docs", "backtest_report_whitelist.json")
+
+
+def _json_safe(obj):
+    """把 NaN / Inf 换成 None，再返回给前端。
+
+    为什么必要：回测产物里 per_stock_mean 的 sharpe、mdd 在"该票全程没持仓"
+    时会写成 NaN。json.load 能读，但 Starlette 响应序列化用 allow_nan=False，
+    遇到 NaN 直接抛 ValueError，浏览器只看到 Internal Server Error，
+    表现为"这张结果一点就报错、其它结果却正常"。
+    """
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {k: _json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_json_safe(v) for v in obj]
+    return obj
+
+
+def _report_whitelist():
+    """读取「已有结果」下拉白名单。
+
+    返回 set(tags)；文件不存在、解析失败或 tags 为空时返回 None，
+    表示不做过滤（保持旧行为，避免白名单文件损坏导致下拉变空）。
+    """
+    if not os.path.isfile(REPORT_WHITELIST_FILE):
+        return None
+    try:
+        with open(REPORT_WHITELIST_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        return None
+    tags = []
+    for g in (data.get("groups") or []):
+        tags.extend(str(t) for t in (g.get("tags") or []))
+    return set(tags) if tags else None
+
+
 @app.get("/api/backtest/reports")
-def list_reports(user=Depends(get_user)):
+def list_reports(include_all: bool = Query(False, alias="all"), user=Depends(get_user)):
     """列出磁盘上的回测结果目录。
 
     为什么需要它：网页"已有结果"下拉原本只列出通过 API 提交的任务，
     命令行跑的（如验证集标定后的 api_f_val）不会出现在任务表里，
     演示时选不到新结果。这里直接扫 result_v2，把两边合并给前端。
+
+    为什么还要白名单：历次调参与联调会在 result_v2 下留下几十个目录，
+    接口若全部返回，演示下拉会变成一屏实验垃圾，评委找不到主口径。
+    白名单只收敛"界面展示"，磁盘文件与文档里的引证路径一概不动；
+    需要临时看全部时用 ?all=1。
     """
     if not os.path.isdir(RESULT_ROOT):
-        return {"reports": []}
+        return {"reports": [], "whitelist": None}
+    wl = _report_whitelist()
     out = []
+    hidden_tags = []
     for name in sorted(os.listdir(RESULT_ROOT)):
         sp = os.path.join(RESULT_ROOT, name, "summary.json")
         if not os.path.isfile(sp):
+            continue
+        if wl is not None and not include_all and name not in wl:
+            # 只把"被藏起来的 tag 名"回报给前端：任务表里同名旧任务也要一并隐藏，
+            # 新提交的 tag 不在这个名单里，提交完成后照常出现在下拉中。
+            hidden_tags.append(name)
             continue
         try:
             with open(sp, "r", encoding="utf-8") as f:
@@ -608,7 +660,8 @@ def list_reports(user=Depends(get_user)):
             "views": cfg.get("views"),
             "fusion_version": cfg.get("prompt_version"),
         })
-    return {"reports": out}
+    return _json_safe({"reports": out, "hidden_tags": hidden_tags,
+                       "whitelist": (sorted(wl) if wl is not None else None)})
 
 
 @app.get("/api/backtest/{tag}/report")
@@ -656,7 +709,7 @@ def report(tag: str, conn=Depends(get_conn), user=Depends(get_user)):
         pf["annual_return"] = pf.get("arr")
     if "ir" not in pf:
         pf["ir"] = pf.get("ir_vs_equal_weight")
-    return {
+    return _json_safe({
         "tag": tag,
         "config": summary.get("config"),
         "portfolio": pf,
@@ -665,7 +718,7 @@ def report(tag: str, conn=Depends(get_conn), user=Depends(get_user)):
         "mdd_range": {"start": pf.get("mdd_start"), "end": pf.get("mdd_end")},
         "nav": nav,
         "trades": trades,
-    }
+    })
 
 
 # ---------- 策略发布（策略作者）----------------------------------------------
