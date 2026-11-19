@@ -467,41 +467,55 @@ def check_app_refs():
 
 
 def check_strategies(conn, main_version, main_dir):
-    """[G] strategies 表指标必须能追到回测目录，主口径策略必须与 summary 一致。"""
+    """[G] strategies 表指标必须能追到回测目录。
+
+    核对优先级：params.tag 指向的目录 > 主口径目录。有产物就逐项对账，
+    没产物才标成"仅历史对照"——否则改完指标忘了重跑目录，这里会静默放过。
+    """
     print("\n[G] 策略表指标对账")
     rows = pd.read_sql_query("SELECT id, name, params_json, metrics_json FROM strategies", conn)
     out = []
     for _, r in rows.iterrows():
         pj = json.loads(r["params_json"] or "{}")
         mj = json.loads(r["metrics_json"] or "{}")
-        pv = pj.get("fusion_version")
-        item = dict(id=int(r["id"]), name=r["name"], version=pv,
+        pv, tag = pj.get("fusion_version"), pj.get("tag")
+        item = dict(id=int(r["id"]), name=r["name"], version=pv, tag=tag,
                     cum=mj.get("cum_return"), sharpe=mj.get("sharpe"),
                     mdd=mj.get("mdd"), trades=mj.get("trades"))
-        if pv == main_version:
-            sp = os.path.join(ROOT, "backtest", "result_v2", main_dir, "summary.json")
-            if not os.path.exists(sp):
-                note("fail", "G", "策略 #%s 指向主口径但缺 %s" % (r["id"], main_dir))
-                out.append(item)
-                continue
-            with open(sp, "r", encoding="utf-8-sig") as f:
-                p = json.load(f)["portfolio"]
-            checks = [("cum_return", p.get("cum_return")),
-                      ("sharpe", p.get("sharpe")),
-                      ("mdd", p.get("mdd")),
-                      ("trades", p.get("total_trades"))]
-            diffs = [(k, mj.get(k), v) for k, v in checks
-                     if v is not None and (mj.get(k) is None or abs(float(mj.get(k)) - float(v)) > 1e-4)]
-            if diffs:
-                note("fail", "G", "策略 #%s 指标与 %s 不一致：%s" % (r["id"], main_dir, diffs))
-                print("  !!  #%s %s 与 summary 不一致：%s" % (r["id"], r["name"], diffs))
-            else:
-                print("  ok  #%s %-34s 主口径一致 cum=%.4f sharpe=%.3f trades=%s" % (
-                    r["id"], r["name"], p["cum_return"], p["sharpe"], p["total_trades"])
-                )
-        else:
-            print("  ~   #%s %-34s 版本=%s（非主口径，仅作历史对照）" % (r["id"], r["name"], pv))
         out.append(item)
+
+        if pv == main_version:
+            dir_name, label = main_dir, "主口径"
+        elif tag:
+            dir_name, label = tag, "产物 tag"
+        else:
+            dir_name = label = None
+
+        sp = (os.path.join(ROOT, "backtest", "result_v2", dir_name, "summary.json")
+              if dir_name else None)
+        if not sp or not os.path.exists(sp):
+            if pv == main_version:
+                note("fail", "G", "策略 #%s 指向主口径但缺 %s" % (r["id"], main_dir))
+            else:
+                print("  ~   #%s %-34s tag=%s（无产物可对账，仅历史对照）" % (
+                    r["id"], r["name"], tag or "—"))
+            continue
+
+        with open(sp, "r", encoding="utf-8-sig") as f:
+            p = json.load(f)["portfolio"]
+        checks = [("cum_return", p.get("cum_return")),
+                  ("sharpe", p.get("sharpe")),
+                  ("mdd", p.get("mdd")),
+                  ("trades", p.get("total_trades"))]
+        diffs = [(k, mj.get(k), v) for k, v in checks
+                 if v is not None and (mj.get(k) is None or abs(float(mj.get(k)) - float(v)) > 1e-4)]
+        if diffs:
+            note("fail", "G", "策略 #%s 指标与 %s 不一致：%s" % (r["id"], dir_name, diffs))
+            print("  !!  #%s %s 与 %s 不一致：%s" % (r["id"], r["name"], dir_name, diffs))
+        else:
+            print("  ok  #%s %-34s %s一致(%s) cum=%.4f sharpe=%.3f trades=%s" % (
+                r["id"], r["name"], label, dir_name, p["cum_return"],
+                p["sharpe"], p["total_trades"]))
     return out
 
 

@@ -19,7 +19,7 @@ START = "2024-08-08"
 
 # 锁定 test 段主口径版本，避免多版本重复计入
 TEST_VER = {"tech": "tech-v1", "fund": "fund-rule-v1",
-            "sent": "sent-v1", "fusion": "fusion-test-3view"}
+            "sent": "sent-v1", "fusion": "fusion-test-3view-v2"}
 
 # 拉取 test 段各视角 (date, symbol, score, label)
 data = defaultdict(dict)  # data[(date,symbol)] = {view: score}

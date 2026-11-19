@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19 18:07:32",
+  "generated_at": "2026-11-19 18:14:42",
   "main_fusion": "fusion-test-3view-v2",
   "weights": [
     0.9,
@@ -45,7 +45,7 @@
     {
       "level": "ok",
       "section": "E",
-      "message": "无横幅文档中未发现未声明的旧数字（豁免 24 处、横幅文档 14 处）"
+      "message": "无横幅文档中未发现未声明的旧数字（豁免 25 处、横幅文档 14 处）"
     }
   ],
   "detail": {
@@ -220,6 +220,14 @@
         "problems": []
       },
       {
+        "dir": "api_cs_new",
+        "tag": "api_cs_new",
+        "version": "tech-v1",
+        "cum": 0.28991857198988025,
+        "trades": 370,
+        "problems": []
+      },
+      {
         "dir": "api_division_linear",
         "tag": "api_division_linear",
         "version": "tech-v1",
@@ -316,6 +324,14 @@
         "problems": []
       },
       {
+        "dir": "api_retech_v2",
+        "tag": "api_retech_v2",
+        "version": null,
+        "cum": 0.06984587706879264,
+        "trades": 906,
+        "problems": []
+      },
+      {
         "dir": "api_tech",
         "tag": "api_tech",
         "version": "tech-v1",
@@ -329,6 +345,22 @@
         "version": null,
         "cum": 0.04075576688331517,
         "trades": 1054,
+        "problems": []
+      },
+      {
+        "dir": "api_vote_new",
+        "tag": "api_vote_new",
+        "version": "fusion-vote-v1",
+        "cum": 0.1629341669033062,
+        "trades": 362,
+        "problems": []
+      },
+      {
+        "dir": "api_vote_tp_new",
+        "tag": "api_vote_tp_new",
+        "version": "fusion-vote-v1",
+        "cum": 0.08032721170503176,
+        "trades": 1032,
         "problems": []
       },
       {
@@ -656,21 +688,21 @@
     "strategies": [
       {
         "id": 1,
-        "name": "技术面强信号策略 v1（修复前口径）",
+        "name": "技术面强信号策略 v1",
         "version": null,
-        "cum": 0.14145401166156746,
-        "sharpe": 3.445794729709783,
-        "mdd": 0.03508420142766654,
-        "trades": null
+        "cum": 0.06984587706879264,
+        "sharpe": 2.2597574541935264,
+        "mdd": 0.02920473799212109,
+        "trades": 906
       },
       {
         "id": 2,
-        "name": "融合投票策略 v1（修复前口径）",
+        "name": "融合投票策略 v1",
         "version": "fusion-vote-v1",
-        "cum": 0.21067612239315614,
-        "sharpe": 2.2969544683748677,
-        "mdd": 0.06604209009077751,
-        "trades": null
+        "cum": 0.1629341669033062,
+        "sharpe": 1.9245765225165035,
+        "mdd": 0.06759492756934672,
+        "trades": 362
       },
       {
         "id": 3,
@@ -683,12 +715,12 @@
       },
       {
         "id": 4,
-        "name": "融合投票止盈策略 v1（修复前口径）",
+        "name": "融合投票止盈策略 v1",
         "version": "fusion-vote-v1",
-        "cum": 0.11890850772357675,
-        "sharpe": 2.026542432641048,
-        "mdd": 0.05223135777892026,
-        "trades": null
+        "cum": 0.08032721170503176,
+        "sharpe": 1.5068823310207136,
+        "mdd": 0.04577036390825402,
+        "trades": 1032
       },
       {
         "id": 7,
@@ -701,18 +733,18 @@
       },
       {
         "id": 8,
-        "name": "截面选股策略 v1（技术面 TOP10 五日轮动）（修复前口径）",
+        "name": "截面选股策略 v1（技术面 TOP10 五日轮动）",
         "version": null,
-        "cum": 0.5380339805135195,
-        "sharpe": 3.6760087615773593,
-        "mdd": 0.052928676198059334,
-        "trades": null
+        "cum": 0.28991857198988025,
+        "sharpe": 1.8363209706576948,
+        "mdd": 0.1399755168782075,
+        "trades": 370
       }
     ],
     "docs": {
       "flagged": 0,
       "bannered": 14,
-      "exempt": 24
+      "exempt": 25
     }
   }
 }

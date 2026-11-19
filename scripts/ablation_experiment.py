@@ -9,7 +9,7 @@
   tech   = tech-v1            （本地 BiLSTM）
   fund   = fund-rule-v1       （估值分位规则版）
   sent   = sent-v1            （智谱新闻文本）
-  fusion = fusion-test-3view   （三视角融合主口径）
+  fusion = fusion-test-3view-v2（三视角融合主口径）
 
 不改动主口径回测结果，仅输出论文用对照表。
 """
@@ -24,7 +24,7 @@ VER = {
     "tech": "tech-v1",
     "fund": "fund-rule-v1",
     "sent": "sent-v1",
-    "fusion": "fusion-test-3view",
+    "fusion": "fusion-test-3view-v2",
 }
 START, END = "2024-08-08", "2024-12-31"
 
@@ -111,7 +111,7 @@ for name, s, e in periods:
 
 # 可靠性校准：fusion 主版本分箱
 print("\n" + "=" * 72)
-print("四、fusion-test-3view 可靠性分箱（交集口径）")
+print("四、fusion-test-3view-v2 可靠性分箱（交集口径）")
 print("=" * 72)
 bins = [(-1.0, -0.6), (-0.6, -0.2), (-0.2, 0.2), (0.2, 0.6), (0.6, 1.0)]
 print(f"{'score区间':<18} {'样本数':>8} {'平均score':>10} {'实际上涨率':>10} {'校准误差':>10}")

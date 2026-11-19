@@ -18,7 +18,7 @@ VAL_END = "2024-08-08"
 VAL_VER = {"tech": "tech-v1", "fund": "fund-rule-v1",
            "sent": "sent-v1", "fusion": "fusion-val-3view"}
 TEST_VER = {"tech": "tech-v1", "fund": "fund-rule-v1",
-            "sent": "sent-v1", "fusion": "fusion-test-3view"}
+            "sent": "sent-v1", "fusion": "fusion-test-3view-v2"}
 
 def load(view, start, end, version):
     rows = conn.execute("""

@@ -31,7 +31,7 @@ def main():
     ap.add_argument("--start", default="2024-08-08")
     ap.add_argument("--end", default="2024-12-31")
     ap.add_argument("--out", default=os.path.join(ROOT, "app", "data", "view_accuracy.json"))
-    ap.add_argument("--fusion_version", default="fusion-test-3view",
+    ap.add_argument("--fusion_version", default="fusion-test-3view-v2",
                     help="融合表版本。默认 test 段三方标定 0.90/0.00/0.10；"
                          "对照旧口径可传 fusion-v1 / fusion-val-v1 / fusion-vote-v1")
     ap.add_argument("--db", default=None)

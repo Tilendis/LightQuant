@@ -36,6 +36,15 @@
       ]
     },
     {
+      "name": "已发布策略（当前口径，2026-11-19 重跑）",
+      "tags": [
+        "api_retech_v2",
+        "api_vote_new",
+        "api_vote_tp_new",
+        "api_cs_new"
+      ]
+    },
+    {
       "name": "已作废口径（仅供核对，禁止引用）",
       "tags": [
         "test_fusion_3view",
