@@ -7,8 +7,8 @@ import json, os, sys
 sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = r"D:\03_Study\GraduationProject\LightQuant"
-TIMING = os.path.join(ROOT, "backtest", "result_v2", "test_fusion_3view", "summary.json")
-CROSS = os.path.join(ROOT, "backtest", "result_v2", "cs_test_test", "summary.json")
+TIMING = os.path.join(ROOT, "backtest", "result_v2", "test_fusion_3view_v2", "summary.json")
+CROSS = os.path.join(ROOT, "backtest", "result_v2", "api_cs_new", "summary.json")
 
 def load(p):
     with open(p, encoding="utf-8") as f:
@@ -21,7 +21,7 @@ rows = [
     ("撮合时点假设", "T 日收盘算分，T 日收盘集合竞价成交", "T-1 收盘算分，T 日开盘成交（剔除隔夜跳空）"),
     ("价格口径", "未复权收盘价 close", "未复权开盘价 open（信号用 T-1 收盘）"),
     ("仓位口径", "单票独立资金、等权持有", "组合口径，Top-N 等权、固定持有期再平衡"),
-    ("信号来源", "三视角融合分数（fusion-test-3view）", "技术面单视角截面排序"),
+    ("信号来源", "三视角融合分数（fusion-test-3view-v2）", "技术面单视角截面排序"),
     ("调仓频率", "逐日信号触发，T+1 不可当日卖出", "每 5 个交易日再平衡一次"),
     ("样本区间", t["portfolio"]["first_date"] + " ~ " + t["portfolio"]["last_date"],
               c["portfolio"]["first_date"] + " ~ " + c["portfolio"]["last_date"]),
