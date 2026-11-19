@@ -1,5 +1,5 @@
 {
-  "tag": "tmp_tech_audit",
+  "tag": "test_tech_postfix",
   "config": {
     "initial_cash": 100000.0,
     "position_pct": 0.95,

@@ -1,0 +1,654 @@
+{
+  "generated_at": "2026-11-19 17:45:11",
+  "main_fusion": "fusion-test-3view-v2",
+  "weights": [
+    0.9,
+    0.0,
+    0.1
+  ],
+  "summary": {
+    "fail": 0,
+    "block": 0,
+    "warn": 0
+  },
+  "issues": [
+    {
+      "level": "info",
+      "section": "A",
+      "message": "fund 下并存 8 个版本：fund-agent-v1, fund-agent-v2, fund-agent-v3, fund-event-v1, fund-quality-v1, fund-rule-v1, rerun-20261119170916, rerun-20261119170952（引用时必须显式指定 prompt_version）"
+    },
+    {
+      "level": "info",
+      "section": "A",
+      "message": "fusion 下并存 17 个版本：fusion-agent-v1, fusion-orch-agent-v1, fusion-orch-agent-v1r, fusion-orch-agent-v1r600, fusion-orch-agent-v1r600b, fusion-orch-v1, fusion-test-3view, fusion-test-3view-v2, fusion-test-decay10, fusion-test-decay3, fusion-v1, fusion-val-3view, fusion-val-legacy, fusion-val-v1, fusion-vote-v1, rerun-20261119170916, rerun-20261119170952（引用时必须显式指定 prompt_version）"
+    },
+    {
+      "level": "info",
+      "section": "A",
+      "message": "sent 下并存 2 个版本：sent-agent-v1, sent-v1（引用时必须显式指定 prompt_version）"
+    },
+    {
+      "level": "info",
+      "section": "A",
+      "message": "tech 下并存 6 个版本：rerun-20261119170916, rerun-20261119170952, tech-agent-v1, tech-llm-blind-v1, tech-llm-v1, tech-v1（引用时必须显式指定 prompt_version）"
+    },
+    {
+      "level": "ok",
+      "section": "B",
+      "message": "fusion-test-3view-v2 与当前上游逐格一致"
+    },
+    {
+      "level": "ok",
+      "section": "E",
+      "message": "无横幅文档中未发现未声明的旧数字（豁免 24 处、横幅文档 14 处）"
+    }
+  ],
+  "detail": {
+    "fusion": {
+      "start": "2024-08-08",
+      "end": "2024-12-31",
+      "diffs": 0,
+      "missing": 0,
+      "extra": 0,
+      "stray": 0,
+      "cells": 4746
+    },
+    "backtests": [
+      {
+        "dir": "ab_fusion",
+        "tag": "ab_fusion",
+        "version": null,
+        "cum": 0.16574321142760162,
+        "trades": 559,
+        "problems": []
+      },
+      {
+        "dir": "ab_fusion_check",
+        "tag": "ab_fusion_check",
+        "version": null,
+        "cum": 0.16574321142760162,
+        "trades": 559,
+        "problems": []
+      },
+      {
+        "dir": "ab_fusion_tbl",
+        "tag": "ab_fusion_tbl",
+        "version": null,
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "ab_fusion_vote",
+        "tag": "ab_fusion_vote",
+        "version": null,
+        "cum": 0.21243790559925468,
+        "trades": 569,
+        "problems": []
+      },
+      {
+        "dir": "ab_fusion_vote_v2",
+        "tag": "ab_fusion_vote_v2",
+        "version": null,
+        "cum": 0.21067612239315614,
+        "trades": 384,
+        "problems": []
+      },
+      {
+        "dir": "ab_fusion_w_v2",
+        "tag": "ab_fusion_w_v2",
+        "version": null,
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "ab_tech",
+        "tag": "ab_tech",
+        "version": null,
+        "cum": 0.15449564568608753,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "ab_tech_fund",
+        "tag": "ab_tech_fund",
+        "version": null,
+        "cum": 0.1354893501915344,
+        "trades": 238,
+        "problems": []
+      },
+      {
+        "dir": "ab_tech_sent",
+        "tag": "ab_tech_sent",
+        "version": null,
+        "cum": 0.1351155380330804,
+        "trades": 1269,
+        "problems": []
+      },
+      {
+        "dir": "ab_tech_th0",
+        "tag": "ab_tech_th0",
+        "version": null,
+        "cum": 0.15449564568608753,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "api_2_1",
+        "tag": "api_2_1",
+        "version": "fusion-v1",
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261111031154",
+        "tag": "api_2_20261111031154",
+        "version": "fusion-vote-v1",
+        "cum": 0.11890850772357675,
+        "trades": 1139,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261111033021",
+        "tag": "api_2_20261111033021",
+        "version": "fusion-vote-v1",
+        "cum": 0.11890850772357675,
+        "trades": 1139,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261112231436",
+        "tag": "api_2_20261112231436",
+        "version": "fusion-test-3view",
+        "cum": 0.15971404148967938,
+        "trades": 1003,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261113110954",
+        "tag": "api_2_20261113110954",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261113111040",
+        "tag": "api_2_20261113111040",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261113111118",
+        "tag": "api_2_20261113111118",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261113111224",
+        "tag": "api_2_20261113111224",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261113202229",
+        "tag": "api_2_20261113202229",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "api_2_20261119171130",
+        "tag": "api_2_20261119171130",
+        "version": "fusion-test-3view",
+        "cum": 0.06060422752154615,
+        "trades": 468,
+        "problems": []
+      },
+      {
+        "dir": "api_division_linear",
+        "tag": "api_division_linear",
+        "version": "tech-v1",
+        "cum": 0.142341422487559,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "api_division_pos",
+        "tag": "api_division_pos",
+        "version": "tech-v1",
+        "cum": 0.14826531876895221,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "api_f_v",
+        "tag": "api_f_v",
+        "version": "fusion-vote-v1",
+        "cum": 0.21067612239315614,
+        "trades": 384,
+        "problems": []
+      },
+      {
+        "dir": "api_f_val",
+        "tag": "api_f_val",
+        "version": "fusion-val-v1",
+        "cum": 0.15097573033942502,
+        "trades": 973,
+        "problems": []
+      },
+      {
+        "dir": "api_f_w",
+        "tag": "api_f_w",
+        "version": "fusion-v1",
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "api_flat_pos90",
+        "tag": "api_flat_pos90",
+        "version": "tech-v1",
+        "cum": 0.1459052697977159,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "api_fusion_default",
+        "tag": "api_fusion_default",
+        "version": null,
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "api_fusion_pool30",
+        "tag": "api_fusion_pool30",
+        "version": "fusion-val-v1",
+        "cum": 0.15664762348172578,
+        "trades": 325,
+        "problems": []
+      },
+      {
+        "dir": "api_fusion_pool50",
+        "tag": "api_fusion_pool50",
+        "version": "fusion-val-v1",
+        "cum": 0.1547951064189148,
+        "trades": 501,
+        "problems": []
+      },
+      {
+        "dir": "api_fusion_val_main",
+        "tag": "api_fusion_val_main",
+        "version": "fusion-val-v1",
+        "cum": 0.15097573033942502,
+        "trades": 973,
+        "problems": []
+      },
+      {
+        "dir": "api_fusion_vote",
+        "tag": "api_fusion_vote",
+        "version": null,
+        "cum": 0.16880007732133806,
+        "trades": 523,
+        "problems": []
+      },
+      {
+        "dir": "api_fv_tp",
+        "tag": "api_fv_tp",
+        "version": "fusion-vote-v1",
+        "cum": 0.11890850772357675,
+        "trades": 1139,
+        "problems": []
+      },
+      {
+        "dir": "api_tech",
+        "tag": "api_tech",
+        "version": "tech-v1",
+        "cum": 0.14145401166156746,
+        "trades": 944,
+        "problems": []
+      },
+      {
+        "dir": "api_tech_val",
+        "tag": "api_tech_val",
+        "version": null,
+        "cum": 0.04075576688331517,
+        "trades": 1054,
+        "problems": []
+      },
+      {
+        "dir": "api_warm",
+        "tag": "api_warm",
+        "version": null,
+        "cum": 0.16574321142760162,
+        "trades": 559,
+        "problems": []
+      },
+      {
+        "dir": "base_alstm_w5",
+        "tag": "base_alstm_w5",
+        "version": null,
+        "cum": 0.07342745547570417,
+        "trades": 696,
+        "problems": []
+      },
+      {
+        "dir": "base_bilstm_w5",
+        "tag": "base_bilstm_w5",
+        "version": null,
+        "cum": 0.129603631522335,
+        "trades": 902,
+        "problems": []
+      },
+      {
+        "dir": "cs_test_api2",
+        "tag": "cs_test_api2",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "cs_test_api",
+        "tag": "cs_test_api",
+        "version": "tech-v1",
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "cs_test_test",
+        "tag": "cs_test_test",
+        "version": null,
+        "cum": 0.5380339805135195,
+        "trades": 370,
+        "problems": []
+      },
+      {
+        "dir": "cs_val_api2",
+        "tag": "cs_val_api2",
+        "version": "tech-v1",
+        "cum": 0.12128707706299902,
+        "trades": 350,
+        "problems": []
+      },
+      {
+        "dir": "cs_val_test",
+        "tag": "cs_val_test",
+        "version": null,
+        "cum": 0.12128707706299902,
+        "trades": 350,
+        "problems": []
+      },
+      {
+        "dir": "feat_alstm_w5",
+        "tag": "feat_alstm_w5",
+        "version": null,
+        "cum": 0.10716367918422098,
+        "trades": 930,
+        "problems": []
+      },
+      {
+        "dir": "feat_bilstm_w5",
+        "tag": "feat_bilstm_w5",
+        "version": null,
+        "cum": 0.15449564568608753,
+        "trades": 856,
+        "problems": []
+      },
+      {
+        "dir": "fusion_draft",
+        "tag": "fusion_draft",
+        "version": null,
+        "cum": 0.11338056465050639,
+        "trades": 304,
+        "problems": []
+      },
+      {
+        "dir": "test_fusion_3view",
+        "tag": "test_fusion_3view",
+        "version": "fusion-test-3view",
+        "cum": 0.09361668908883325,
+        "trades": 733,
+        "problems": []
+      },
+      {
+        "dir": "test_fusion_3view_v2",
+        "tag": "test_fusion_3view_v2",
+        "version": "fusion-test-3view-v2",
+        "cum": 0.07897037510277993,
+        "trades": 616,
+        "problems": []
+      },
+      {
+        "dir": "test_fusion_decay10",
+        "tag": "test_fusion_decay10",
+        "version": "fusion-test-decay10",
+        "cum": 0.06490550695329578,
+        "trades": 607,
+        "problems": []
+      },
+      {
+        "dir": "test_fusion_decay3",
+        "tag": "test_fusion_decay3",
+        "version": "fusion-test-decay3",
+        "cum": 0.06042333250234666,
+        "trades": 603,
+        "problems": []
+      },
+      {
+        "dir": "test_pool_quality50",
+        "tag": "test_pool_quality50",
+        "version": "fusion-test-3view",
+        "cum": 0.1289992364125625,
+        "trades": 406,
+        "problems": []
+      },
+      {
+        "dir": "test_pool_quality50_v2",
+        "tag": "test_pool_quality50_v2",
+        "version": "fusion-test-3view-v2",
+        "cum": 0.1297390279866919,
+        "trades": 368,
+        "problems": []
+      },
+      {
+        "dir": "test_pool_value50",
+        "tag": "test_pool_value50",
+        "version": "fusion-test-3view",
+        "cum": 0.13679107849086902,
+        "trades": 509,
+        "problems": []
+      },
+      {
+        "dir": "test_pool_value50_v2",
+        "tag": "test_pool_value50_v2",
+        "version": "fusion-test-3view-v2",
+        "cum": 0.13103818826612557,
+        "trades": 476,
+        "problems": []
+      },
+      {
+        "dir": "test_tech_postfix",
+        "tag": "test_tech_postfix",
+        "version": "tech-v1",
+        "cum": 0.057344817689498395,
+        "trades": 599,
+        "problems": []
+      },
+      {
+        "dir": "val_api_tech",
+        "tag": "val_api_tech",
+        "version": "tech-v1",
+        "cum": 0.06324397861090736,
+        "trades": 676,
+        "problems": []
+      },
+      {
+        "dir": "val_chk_tech100",
+        "tag": "val_chk_tech100",
+        "version": "tech-v1",
+        "cum": 0.06324397861090736,
+        "trades": 676,
+        "problems": []
+      },
+      {
+        "dir": "val_division_linear",
+        "tag": "val_division_linear",
+        "version": "tech-v1",
+        "cum": 0.053485182209374926,
+        "trades": 676,
+        "problems": []
+      },
+      {
+        "dir": "val_division_pos",
+        "tag": "val_division_pos",
+        "version": "tech-v1",
+        "cum": 0.05832579230741897,
+        "trades": 676,
+        "problems": []
+      },
+      {
+        "dir": "val_fusion_3view",
+        "tag": "val_fusion_3view",
+        "version": "fusion-val-3view",
+        "cum": 0.06680848514359639,
+        "trades": 718,
+        "problems": []
+      },
+      {
+        "dir": "val_fusion_legacy",
+        "tag": "val_fusion_legacy",
+        "version": "fusion-val-legacy",
+        "cum": 0.016891776112946788,
+        "trades": 486,
+        "problems": []
+      },
+      {
+        "dir": "val_fusion_tf82",
+        "tag": "val_fusion_tf82",
+        "version": "{\"fund\": \"fund-rule-v1\", \"tech\": \"tech-v1\"}",
+        "cum": 0.04013742912481577,
+        "trades": 650,
+        "problems": []
+      },
+      {
+        "dir": "val_pool50",
+        "tag": "val_pool50",
+        "version": "tech-v1",
+        "cum": 0.02954580547013741,
+        "trades": 405,
+        "problems": []
+      },
+      {
+        "dir": "val_pool_quality50",
+        "tag": "val_pool_quality50",
+        "version": "fusion-val-3view",
+        "cum": 0.04795722035854655,
+        "trades": 364,
+        "problems": []
+      },
+      {
+        "dir": "val_tech_alstm",
+        "tag": "val_tech_alstm",
+        "version": null,
+        "cum": 0.04742839291391454,
+        "trades": 849,
+        "problems": []
+      },
+      {
+        "dir": "val_tech_bilstm",
+        "tag": "val_tech_bilstm",
+        "version": null,
+        "cum": 0.06324397861090736,
+        "trades": 676,
+        "problems": []
+      },
+      {
+        "dir": "w0.2_0.4_0.4",
+        "tag": "w0.2_0.4_0.4",
+        "version": null,
+        "cum": 0.14209461675414548,
+        "trades": 373,
+        "problems": []
+      },
+      {
+        "dir": "w0.33_0.33_0.33",
+        "tag": "w0.33_0.33_0.33",
+        "version": null,
+        "cum": 0.1499343952615031,
+        "trades": 434,
+        "problems": []
+      },
+      {
+        "dir": "w0.4_0.3_0.3",
+        "tag": "w0.4_0.3_0.3",
+        "version": null,
+        "cum": 0.15617389991159825,
+        "trades": 462,
+        "problems": []
+      },
+      {
+        "dir": "w0.6_0.2_0.2",
+        "tag": "w0.6_0.2_0.2",
+        "version": null,
+        "cum": 0.1795070349766099,
+        "trades": 652,
+        "problems": []
+      },
+      {
+        "dir": "w0.8_0.1_0.1",
+        "tag": "w0.8_0.1_0.1",
+        "version": null,
+        "cum": 0.176224869327128,
+        "trades": 899,
+        "problems": []
+      }
+    ],
+    "accuracy": {
+      "tech": {
+        "acc": 0.506,
+        "n": 4650,
+        "acc_strong": 0.5208,
+        "n_strong": 2064,
+        "match": true
+      },
+      "fund": {
+        "acc": 0.494,
+        "n": 4850,
+        "acc_strong": 0.4936,
+        "n_strong": 3894,
+        "match": true
+      },
+      "sent": {
+        "acc": 0.5054,
+        "n": 920,
+        "acc_strong": 0.5155,
+        "n_strong": 776,
+        "match": true
+      },
+      "fusion": {
+        "acc": 0.5114,
+        "n": 4746,
+        "acc_strong": 0.5172,
+        "n_strong": 1920,
+        "match": true
+      }
+    },
+    "docs": {
+      "flagged": 0,
+      "bannered": 14,
+      "exempt": 24
+    }
+  }
+}
