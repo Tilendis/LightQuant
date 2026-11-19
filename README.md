@@ -431,8 +431,28 @@ CSMD V1.0 含 CSMD50 与 CSMD300 两个规模。
 
 ---
 
+## 来源与归属（必读）
+
+**本项目基于开源框架 LightQuant 二次开发，并使用 CSMD 公开数据集。**
+以下边界在论文、答辩与代码分发中均适用。
+
+| 层次 | 归属 | 许可 |
+|---|---|---|
+| 上游框架代码（`model/`、`utils/`、`multi_exp/`、`single_exp/`、`factor_lib/`、`llm_factor/`、`dataset_construction/`、`evaluate/`） | ECNU CILAB，https://github.com/ECNU-CILAB/LightQuant | MIT + 上游 Disclaimer：仅限学术与非商业用途 |
+| CSMD 数据集（`dataset/`） | 同上作者，CIKM '25 论文发布 | **CC BY-NC-SA 4.0**（署名 / 非商业 / 相同方式共享），见 `dataset/README.md` |
+| 本项目应用层（`app/`、`tests/`、`docs/`、`backtest/` 两套引擎、新增 `scripts/`） | 毕设原创 | MIT，见 `LICENSE` |
+
+**本项目的增量**（上游没有的部分）：四角色权限隔离平台、三视角研判与留痕、
+Point-in-Time 防穿越与全链路口径溯源、离线实验矩阵（消融 / 校准 / 权重稳定性 /
+成本敏感性 / 撮合口径 / 审核评测 / 分歧度分层 / 沪深300 成分基准）、121 项 pytest。
+
+**不得表述为**："本人开发了 LightQuant 框架"或"本人构建了 CSMD 数据集"。
+第三方组件与数据来源的完整声明见 `THIRD_PARTY_NOTICES.md`，
+论文口径见 `docs/数据来源与依赖声明.md`。
+
 ## 许可以及引用
 
-本仓库的**应用层代码**（`app/`、`backtest/engine_cross_section.py`、`tests/`、
-`docs/`）为毕设原创。上游数据集与框架代码的授权遵循其原始声明，
-使用数据集请引用 CSMD / CIKM 2025 原论文。
+应用层代码为毕设原创（MIT）。使用 CSMD 数据集请引用原论文：
+
+> Liu Y., Li Z., Yang R., Mo F., Chen C. *CSMD: Curated Multimodal Dataset for
+> Chinese Stock Analysis*. CIKM '25, pp. 6471–6475, 2025.

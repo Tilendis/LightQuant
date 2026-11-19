@@ -1,6 +1,14 @@
 MIT License
 
 Copyright (c) 2026 刘卓闻 (Liu Zhuowen)
+Copyright (c) ECNU CILAB — upstream LightQuant framework
+           (https://github.com/ECNU-CILAB/LightQuant)
+
+This project is a derivative work. Portions of the source code are derived from
+the upstream LightQuant framework, which is distributed under the MIT License.
+Its original copyright notice is retained above, and its permission notice is
+identical to the one below. See THIRD_PARTY_NOTICES.md for the full list of
+third-party components and their terms.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,15 +32,15 @@ SOFTWARE.
 
 Scope note / 适用范围说明
 
-This MIT license covers the application layer written for this project:
-app/, tests/, docs/, backtest/engine_cross_section.py, and the new scripts
-added on top of the upstream codebase.
+1. 本 MIT 许可覆盖本项目的应用层代码：`app/`、`tests/`、`docs/`、
+   `backtest/engine_v2.py`、`backtest/engine_cross_section.py`，以及在上游代码
+   基础上新增的 `scripts/`。
 
-The CSMD dataset (CSMD50 / CSMD300) and the upstream LightQuant framework code
-are third-party works. Their use is governed by their original licenses and
-terms; if you use the dataset, cite the original CSMD / CIKM 2025 paper.
+2. 上游 LightQuant 框架代码（`model/`、`utils/`、`multi_exp/`、`single_exp/`、
+   `factor_lib/`、`llm_factor/`、`dataset_construction/`、`evaluate/` 等）为第三方
+   作品，按 MIT 许可保留其原始版权声明；上游 README 另附"仅限学术与非商业用途"
+   的免责声明，具体使用条件以原始仓库为准。
 
-本 MIT 许可覆盖本项目的应用层代码（app/、tests/、docs/、
-backtest/engine_cross_section.py 以及在上游代码基础上新增的脚本）。
-CSMD 数据集与上游 LightQuant 框架代码属第三方作品，其使用遵循原始授权；
-使用数据集请引用 CSMD / CIKM 2025 原论文。
+3. CSMD 数据集（`dataset/` 下的 CSMD50、CSMD300）为第三方作品，遵循
+   **CC BY-NC-SA 4.0**（署名—非商业性使用—相同方式共享），**不适用本 MIT 许可**。
+   使用前请阅读 `dataset/README.md` 与 `THIRD_PARTY_NOTICES.md`。
