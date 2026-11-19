@@ -19,6 +19,7 @@ import argparse
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,11 +31,19 @@ PROMPT_VERSION = "fusion-v1"
 VIEWS = ("tech", "fund", "sent")
 
 
-def load_matrix(conn, view, start, end, prompt_versions):
-    rows = conn.execute(
-        """SELECT symbol, date, score, signal FROM judgements
-           WHERE view = ? AND date BETWEEN ? AND ?""",
-        (view, start, end)).fetchall()
+def load_matrix(conn, view, start, end, prompt_version=None):
+    """按视角取分数矩阵；务必按 prompt_version 过滤。
+
+    踩过的坑：同一 view 下并存多个版本（fund-rule-v1 与实验版 fund-quality-v1 各 9750 条），
+    不按版本过滤时 pivot 会按行序取到"最后一条"，主口径便不可复现。
+    """
+    sql = """SELECT symbol, date, score FROM judgements
+             WHERE view = ? AND date BETWEEN ? AND ?"""
+    params = [view, start, end]
+    if prompt_version:
+        sql += " AND prompt_version = ?"
+        params.append(prompt_version)
+    rows = conn.execute(sql, params).fetchall()
     if not rows:
         return pd.DataFrame()
     df = pd.DataFrame([dict(r) for r in rows])
@@ -61,6 +70,38 @@ def demean(df):
     return df.sub(df.mean(axis=1), axis=0)
 
 
+def sent_decay_factors(sent_mat, idx, cols, halflife_days):
+    """情绪面时间衰减因子：0.5 ** (滞后天数 / 半衰期)。
+
+    为什么作用在"去均值后的偏离量"上：
+        衰减的语义是"这条旧新闻的边际信息越来越弱"。若作用在原始分上，
+        它会被压向 0，而 0 在截面里代表"平均情绪"，等于把没新闻的股票
+        抬成中性；作用在偏离量上，衰减让偏离**趋近于 0（弃权）**，
+        与"无新闻不参与判断"的业务语义一致。
+
+    滞后天数用自然日差（新闻周末也发，交易日只为对齐）。
+    返回 DataFrame，index=idx、columns=cols，值域 (0, 1]；从未有过新闻的格子为 0。
+    """
+    factor = pd.DataFrame(0.0, index=idx, columns=cols)
+    if sent_mat is None or sent_mat.empty:
+        return factor
+    tgt = pd.to_datetime(pd.Index(idx)).values
+    for sym in cols:
+        if sym not in sent_mat.columns:
+            continue
+        s = sent_mat[sym].dropna()
+        if s.empty:
+            continue
+        src = pd.to_datetime(pd.Index(s.index)).values
+        pos = np.searchsorted(src, tgt, side="right") - 1
+        lag = np.full(len(tgt), np.nan)
+        has = pos >= 0
+        lag[has] = (tgt[has] - src[pos[has]]) / np.timedelta64(1, "D")
+        factor[sym] = np.where(has, 0.5 ** (lag / float(halflife_days)), 0.0)
+    return factor
+
+
+
 def to_signal(score, th):
     if score >= th:
         return "BUY"
@@ -79,6 +120,9 @@ def main():
     ap.add_argument("--no_demean", action="store_true",
                     help="关闭截面去均值（不建议，情绪面乐观偏置会传导）")
     ap.add_argument("--threshold", type=float, default=0.2)
+    ap.add_argument("--sent_decay_halflife", type=float, default=None,
+                    help="情绪面前向填充的半衰期（自然日）。不填=原口径（不衰减），"
+                         "填 3 表示新闻发布 3 天后信息权重减半；从未有新闻则弃权。")
     ap.add_argument("--prompt_version", default=None,
                     help="写入版本号。默认 weighted=fusion-v1、vote=fusion-vote-v1，"
                          "两版可共存于同一张表，回测时按版本读取")
@@ -86,6 +130,9 @@ def main():
                     help="先删除本版本已有的 fusion 记录。改过日期轴后必须用，"
                          "否则非交易日的旧记录会残留")
     ap.add_argument("--db", default=None)
+    ap.add_argument("--tech_version", default="tech-v1")
+    ap.add_argument("--fund_version", default="fund-rule-v1")
+    ap.add_argument("--sent_version", default="sent-v1")
     args = ap.parse_args()
 
     w = [float(x) for x in args.weights.split(",")]
@@ -104,11 +151,14 @@ def main():
         print("已清除 %s 旧记录 %d 条" % (pv, n))
 
     mats = {}
+    ver = {"tech": args.tech_version, "fund": args.fund_version,
+           "sent": args.sent_version}
     for v in VIEWS:
-        m = load_matrix(conn, v, args.start, args.end, None)
+        m = load_matrix(conn, v, args.start, args.end, ver[v])
         mats[v] = m
-        print("%-5s 覆盖 %d 日 × %d 只 = %d 条" % (
-            v, m.shape[0], m.shape[1], int(m.notna().sum().sum()) if not m.empty else 0))
+        print("%-5s 覆盖 %d 日 × %d 只 = %d 条（%s）" % (
+            v, m.shape[0], m.shape[1],
+            int(m.notna().sum().sum()) if not m.empty else 0, ver[v]))
 
     if mats["tech"].empty:
         raise SystemExit("tech 视角为空，先跑 scripts/gen_tech.py")
@@ -140,6 +190,15 @@ def main():
 
         if v in ("fund", "sent") and not args.no_demean:
             parts[v] = demean(parts[v])
+
+    # 情绪面衰减必须放在去均值之后：作用对象是"截面偏离量"，不是原始分。
+    # 不传 --sent_decay_halflife 时整段跳过，原口径逐位不变。
+    if args.sent_decay_halflife:
+        factor = sent_decay_factors(mats["sent"], idx, cols, args.sent_decay_halflife)
+        parts["sent"] = parts["sent"] * factor
+        cov = float((factor > 0).sum().sum()) / float(factor.size) if factor.size else 0.0
+        print("情绪面衰减已启用：半衰期 %.1f 天，仍有余量的格子占比 %.2f%%"
+              % (args.sent_decay_halflife, cov * 100))
 
     written, skip_empty = 0, 0
     dist = {"BUY": 0, "SELL": 0, "HOLD": 0}

@@ -4,7 +4,6 @@
     {
       "name": "论文核心",
       "tags": [
-        "test_fusion_3view",
         "test_fusion_3view_v2",
         "val_fusion_3view",
         "cs_test_test",
@@ -28,14 +27,20 @@
     {
       "name": "基本面质量因子（2026-11-19）",
       "tags": [
-        "test_pool_quality50",
         "test_pool_quality50_v2",
-        "test_pool_value50",
         "test_pool_value50_v2",
         "val_pool_quality50",
         "test_tech_postfix",
         "test_fusion_decay3",
         "test_fusion_decay10"
+      ]
+    },
+    {
+      "name": "已作废口径（仅供核对，禁止引用）",
+      "tags": [
+        "test_fusion_3view",
+        "test_pool_quality50",
+        "test_pool_value50"
       ]
     }
   ]

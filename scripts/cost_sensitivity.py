@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """P1-4 成本敏感性表：固定主口径交易序列，四档费率重算费用/净值/Sharpe。
-口径声明：买卖点、股数、成交价沿用主口径 result_v2/test_fusion_3view，
+口径声明：买卖点、股数、成交价沿用主口径 result_v2/test_fusion_3view_v2
+（v2 = 用修复后的 tech-v1 重算的融合口径，取代 11-16 生成、12 月 tech 为修复前数据的 v1），
 费率倍数只作用于佣金（双边、最低5元）与印花税（卖出端）；滑点已计入成交价，不重复扣。
 近似：费用在发生日从现金扣除，按当日权益比例下调净值序列。
 """
@@ -9,7 +10,7 @@ import numpy as np
 sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = r"D:\03_Study\GraduationProject\LightQuant"
-DIR = os.path.join(ROOT, "backtest", "result_v2", "test_fusion_3view")
+DIR = os.path.join(ROOT, "backtest", "result_v2", "test_fusion_3view_v2")
 INITIAL = 100000.0
 RF = 0.02
 ANN = 252
