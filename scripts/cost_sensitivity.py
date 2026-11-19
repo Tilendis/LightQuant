@@ -22,6 +22,12 @@ MIN_COMM = 5.0
 with open(os.path.join(DIR, "summary.json"), encoding="utf-8") as f:
     summary = json.load(f)
 
+# 口径对齐：summary 的 total_fee 是 N 个独立账户的合计费用，
+# nav.csv 的 portfolio_nav 是这 N 个账户合成后的归一化净值（1.0 = 总本金）。
+# 两者相加减必须用总本金，用单账户 10 万会把费用放大约 50 倍。
+N_ACCOUNTS = int(summary["portfolio"]["stocks"])
+TOTAL_CAPITAL = INITIAL * N_ACCOUNTS
+
 trades = []
 with open(os.path.join(DIR, "trades.csv"), encoding="utf-8-sig") as f:
     for row in csv.DictReader(f):
@@ -65,13 +71,13 @@ def run(mult_comm, mult_stamp):
     cum_fee1 = 0.0
     for i, d in enumerate(nav_dates):
         cum_fee1 += fee1_by_day.get(d, 0.0)
-        nav0[i] = nav_vals[i] + cum_fee1 / INITIAL
+        nav0[i] = nav_vals[i] + cum_fee1 / TOTAL_CAPITAL
     # 2) 扣当前档费用（线性累计绝对额）
     nav_new = nav0.copy()
     cum_fee = 0.0
     for i, d in enumerate(nav_dates):
         cum_fee += fee_by_day.get(d, 0.0)
-        nav_new[i] = nav0[i] - cum_fee / INITIAL
+        nav_new[i] = nav0[i] - cum_fee / TOTAL_CAPITAL
 
     final_nav = nav_new[-1]
     cum = final_nav - 1.0
