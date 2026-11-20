@@ -41,7 +41,8 @@
         "api_retech_v2",
         "api_vote_new",
         "api_vote_tp_new",
-        "api_cs_new"
+        "api_cs_new",
+        "api_cs_val_new"
       ]
     },
     {
